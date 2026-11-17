@@ -8,7 +8,7 @@
  * (por ejemplo 'v2') para que los clientes reciban la versión nueva.
  */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_NAME = `flaco-tux-${CACHE_VERSION}`;
 
 // Rutas relativas al alcance del SW (raíz del sitio)
@@ -20,7 +20,7 @@ const PRECACHE_URLS = [
   './manifest.json',
   './assets/images/el_flaco_tux_logo.png',
   './assets/images/tux_logo.png',
-  './assets/images/burger_cheese_pull_1790710190015.jpg',
+  './assets/images/alitas.png',
   './assets/icons/tux-192.png',
   './assets/icons/tux-512.png'
 ];

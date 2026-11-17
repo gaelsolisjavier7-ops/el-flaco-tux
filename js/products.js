@@ -1,10 +1,26 @@
 /**
  * BASE DE DATOS DE PRODUCTOS - EL FLACO TUX
- * Hamburguesas, Alitas & Botanas - Root de tu antojo
+ * Alitas, Boneless & Botanas - Root de tu antojo
  * Datos basados fielmente en el menú del negocio
  */
 
-export const MENU_DATA = [
+/**
+ * VISIBILIDAD TEMPORAL DEL MENÚ
+ * ---------------------------------------------------------------
+ * Pon en `false` la categoría que quieras ocultar del sitio.
+ * Los platillos siguen guardados en este mismo archivo, así que al
+ * volver a `true` reaparecen sin tocar diseño, carrito ni WhatsApp.
+ *
+ * Estado actual: oferta temporal de alitas, boneless y botanas.
+ */
+export const CATEGORY_VISIBILITY = {
+  burgers: false,
+  hotdogs: false,
+  alitas: true,
+  sides: true
+};
+
+const ALL_MENU_DATA = [
   // --- SECCIÓN HAMBURGUESAS (Todas incluyen papas) ---
   {
     id: "burger-sencilla",
@@ -235,6 +251,11 @@ export const MENU_DATA = [
   }
 ];
 
+// Solo se publican las categorías visibles (ver CATEGORY_VISIBILITY arriba)
+export const MENU_DATA = ALL_MENU_DATA.filter(
+  (product) => CATEGORY_VISIBILITY[product.category] !== false
+);
+
 // Opciones de personalización disponibles
 export const CUSTOM_OPTIONS = {
   exclusions: [
@@ -254,15 +275,15 @@ export const CUSTOM_OPTIONS = {
 // Configuración general del negocio
 export const STORE_CONFIG = {
   name: "EL FLACO TUX",
-  tagline: "Hamburguesas, Alitas & Botanas - Root de tu antojo",
-  specialties: "Hamburguesas • Alitas • Botanas • Hot Dogs",
+  tagline: "Alitas, Boneless & Botanas - Root de tu antojo",
+  specialties: "Alitas • Boneless • Botanas",
   phone: "+52 921 303 3313",
   whatsappNumber: "529213033313",
   currency: "$",
   location: "Nanchital de Lázaro Cárdenas del Río, Veracruz",
   deliveryZoneText: "Nanchital y zonas conurbadas",
   deliveryNote: "🛵 Envíos a domicilio en Nanchital de Lázaro Cárdenas del Río con costo adicional según colonia",
-  promoHero: "🔥 ¡Todas las Burgers de EL FLACO TUX incluyen papas fritas gratis!",
+  promoHero: "🌶️ Alitas y boneless bañados al momento: elige entre BBQ, Búfalo, Mango Habanero, Lemon Pepper o Parmesano.",
   hours: {
     openHour: 18, // 6:00 PM
     closeHour: 24, // 12:00 AM

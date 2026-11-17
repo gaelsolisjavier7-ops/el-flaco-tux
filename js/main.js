@@ -1,4 +1,4 @@
-import { MENU_DATA, STORE_CONFIG, CUSTOM_OPTIONS } from './products.js';
+import { MENU_DATA, STORE_CONFIG, CUSTOM_OPTIONS, CATEGORY_VISIBILITY } from './products.js';
 import { 
   getCart, 
   setCart, 
@@ -27,6 +27,28 @@ let currentProductToCustomize = null;
 // Elementos DOM Principales
 const productsGrid = document.getElementById('products-grid');
 const filterBtns = document.querySelectorAll('.filter-btn');
+
+// Categorías del tablero: las apagadas en CATEGORY_VISIBILITY se ocultan solas
+const CATEGORY_META = [
+  { id: 'burgers', icon: 'fa-burger', label: 'Hamburguesas' },
+  { id: 'hotdogs', icon: 'fa-hotdog', label: 'Jochos Jumbos' },
+  { id: 'alitas', icon: 'fa-drumstick-bite', label: 'Alitas' },
+  { id: 'sides', icon: 'fa-bowl-food', label: 'Botanas' }
+];
+
+const isCategoryVisible = (cat) => CATEGORY_VISIBILITY[cat] !== false;
+
+function applyCategoryVisibility() {
+  filterBtns.forEach((btn) => {
+    const cat = btn.getAttribute('data-category');
+    if (cat !== 'all' && !isCategoryVisible(cat)) {
+      btn.style.display = 'none';
+      btn.hidden = true;
+      btn.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('tabindex', '-1');
+    }
+  });
+}
 const menuSearchInput = document.getElementById('menu-search-input');
 const menuSearchClearBtn = document.getElementById('menu-search-clear-btn');
 const quickTagChips = document.querySelectorAll('.quick-tag-chip');
@@ -163,6 +185,8 @@ function highlightMatches(text, query) {
 }
 
 function selectCategory(cat) {
+  // Nunca dejes activa una categoría oculta temporalmente
+  if (cat !== 'all' && !isCategoryVisible(cat)) cat = 'all';
   currentFilter = cat;
   filterBtns.forEach(b => {
     const isMatch = b.getAttribute('data-category') === cat;
@@ -293,26 +317,20 @@ function renderProductsInner() {
             <button class="btn btn-primary" id="btn-clear-empty-search">
               <i class="fa-solid fa-rotate-left"></i> Limpiar búsqueda y ver todo
             </button>
-            <button class="btn btn-outline" id="btn-empty-burgers">
-              <i class="fa-solid fa-burger"></i> Ver Hamburguesas
-            </button>
-            <button class="btn btn-outline" id="btn-empty-hotdogs">
-              <i class="fa-solid fa-hotdog"></i> Ver Jochos Jumbos
-            </button>
-            <button class="btn btn-outline" id="btn-empty-alitas">
-              <i class="fa-solid fa-drumstick-bite"></i> Ver Alitas
-            </button>
-            <button class="btn btn-outline" id="btn-empty-sides">
-              <i class="fa-solid fa-bowl-food"></i> Ver Botanas
-            </button>
+            ${CATEGORY_META.filter((c) => isCategoryVisible(c.id)).map((c) => `
+            <button class="btn btn-outline" data-empty-category="${c.id}">
+              <i class="fa-solid ${c.icon}"></i> Ver ${c.label}
+            </button>`).join('')}
           </div>
         </div>
       `;
       document.getElementById('btn-clear-empty-search')?.addEventListener('click', () => clearSearch());
-      document.getElementById('btn-empty-burgers')?.addEventListener('click', () => { clearSearch(); selectCategory('burgers'); });
-      document.getElementById('btn-empty-hotdogs')?.addEventListener('click', () => { clearSearch(); selectCategory('hotdogs'); });
-      document.getElementById('btn-empty-alitas')?.addEventListener('click', () => { clearSearch(); selectCategory('alitas'); });
-      document.getElementById('btn-empty-sides')?.addEventListener('click', () => { clearSearch(); selectCategory('sides'); });
+      productsGrid.querySelectorAll('[data-empty-category]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          clearSearch();
+          selectCategory(btn.getAttribute('data-empty-category'));
+        });
+      });
       return;
     }
     productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">No hay productos disponibles en esta categoría.</p>`;
@@ -356,7 +374,7 @@ function renderProductsInner() {
 
     card.innerHTML = `
       <div class="pin-media-wrap product-img-wrap gallery-photo-trigger" data-id="${product.id}" role="button" tabindex="0" title="Toca para ver ${product.name} en el tablero">
-        <img src="${product.image}" alt="${product.name}" class="pin-img product-img" loading="lazy" onerror="this.src='assets/images/hero_burger.jpg'">
+        <img src="${product.image}" alt="${product.name}" class="pin-img product-img" loading="lazy" onerror="this.src='assets/images/alitas.png'">
         ${badgeHtml}
         <div class="pin-hover-overlay">
           <div class="pin-top-actions">
@@ -483,7 +501,7 @@ function openCustomizeModal(productId) {
 
   customizeProductDetails.innerHTML = `
     <div style="display: flex; gap: 14px; align-items: center; background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
-      <img src="${product.image}" style="width: 60px; height: 60px; border-radius: var(--radius-sm); object-fit: cover;" onerror="this.src='assets/images/hero_burger.jpg'">
+      <img src="${product.image}" style="width: 60px; height: 60px; border-radius: var(--radius-sm); object-fit: cover;" onerror="this.src='assets/images/alitas.png'">
       <div style="font-size: 0.9rem; font-weight: 700;">${product.name}</div>
       <div style="color: var(--secondary); font-weight: 800; font-size: 0.9rem;">${displayBasePrice}</div>
     </div>
@@ -879,6 +897,7 @@ function registerServiceWorker() {
 
 function init() {
   applyTheme(getCurrentTheme(), false);
+  applyCategoryVisibility();
   renderProducts();
   updateMenuCount();
   initScrollAnimations();

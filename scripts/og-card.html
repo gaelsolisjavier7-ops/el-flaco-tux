@@ -41,9 +41,14 @@
     background: linear-gradient(90deg, #E63946 0 30%, #FFC300 30% 100%);
   }
 
-  /* Foto a sangre completa con degradado a la izquierda: sin costuras */
-  .photo { position: absolute; inset: 0; z-index: 0; }
-  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 74% 50%; }
+  /* Ilustración a la derecha con máscara radial: sin costuras con el fondo */
+  .photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .photo img {
+    position: absolute; top: 50%; right: -70px; transform: translateY(-50%);
+    width: 900px; height: auto;
+    -webkit-mask-image: radial-gradient(ellipse at 52% 50%, #000 56%, transparent 82%);
+    mask-image: radial-gradient(ellipse at 52% 50%, #000 56%, transparent 82%);
+  }
   .photo::after {
     content: ''; position: absolute; inset: 0; z-index: 1;
     background:
@@ -128,7 +133,7 @@
 </head>
 <body>
   <div class="photo">
-    <img src="/assets/images/burger_bacon.jpg" alt="">
+    <img src="/assets/images/alitas.png" alt="">
   </div>
   <div class="glow-yellow"></div>
   <div class="grid"></div>
@@ -137,13 +142,13 @@
   <div class="content">
     <div class="logo-tile"><img src="/assets/images/el_flaco_tux_logo.png" alt="Tux"></div>
     <div class="title">El Flaco Tux</div>
-    <div class="subtitle">Hamburguesas, Alitas<br><span class="amp">&amp;</span> Botanas</div>
+    <div class="subtitle">Alitas, Boneless<br><span class="amp">&amp;</span> Botanas</div>
     <div class="row">
       <div class="pill"><span class="caret">&gt;</span> Root de tu antojo</div>
       <div class="chat"><span class="dot"></span> WhatsApp</div>
     </div>
   </div>
 
-  <div class="footer"><span class="mark"></span> Nanchital, Veracruz · A la plancha, al momento</div>
+  <div class="footer"><span class="mark"></span> Nanchital, Veracruz · Recién bañadas en salsa</div>
 </body>
 </html>

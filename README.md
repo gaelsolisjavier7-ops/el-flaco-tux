@@ -75,5 +75,9 @@ ejemplo a `'v2'`) y ejecuta `npm run build` si tocaste algo dentro de `js/`.
 ## Personalización
 
 - Los productos y la configuración del negocio están en `js/products.js`.
+- **Ocultar categorías temporalmente:** en `js/products.js` cambia `CATEGORY_VISIBILITY`
+  (`burgers`, `hotdogs`, `alitas`, `sides`) a `false`/`true`. Los platillos no se
+  borran: solo dejan de mostrarse en el tablero, el buscador y los filtros. Después
+  de cambiarlo ejecuta `npm run build`.
 - Los colores y tipografías se controlan desde `:root` en `css/style.css`.
 - La identidad visual está en `assets/images/el_flaco_tux_logo.svg` y sus versiones PNG.
