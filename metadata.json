@@ -1,0 +1,6 @@
+{
+  "name": "EL FLACO TUX",
+  "description": "Hamburguesas, Alitas & Botanas - Root de tu antojo. Sitio web para negocio gastronómico con carrito dinámico, cálculo de tiempo de espera y pedidos por WhatsApp",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

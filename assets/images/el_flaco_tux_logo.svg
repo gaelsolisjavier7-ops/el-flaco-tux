@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">EL FLACO TUX</title>
+  <desc id="logoDesc">Pingüino Tux con bandana roja sobre fondo negro terminal. Hamburguesas, Alitas y Botanas - Root de tu antojo.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242424"/>
+      <stop offset="55%" stop-color="#161616"/>
+      <stop offset="100%" stop-color="#0B0B0B"/>
+    </linearGradient>
+    <linearGradient id="bandana" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F04B57"/>
+      <stop offset="100%" stop-color="#B3202C"/>
+    </linearGradient>
+    <linearGradient id="beak" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD54A"/>
+      <stop offset="55%" stop-color="#FFC300"/>
+      <stop offset="100%" stop-color="#E6A800"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#E63946" stop-opacity="0.42"/>
+      <stop offset="55%" stop-color="#E63946" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="circleClip">
+      <circle cx="256" cy="256" r="256"/>
+    </clipPath>
+  </defs>
+
+  <rect width="512" height="512" fill="#121212"/>
+
+  <g clip-path="url(#circleClip)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <rect width="512" height="512" fill="url(#grid)"/>
+    <circle cx="256" cy="244" r="224" fill="url(#halo)"/>
+
+    <!-- Prompt de terminal -->
+    <text x="392" y="112" font-family="'Fira Code', Consolas, monospace" font-size="34" font-weight="700" fill="#FFC300" opacity="0.72">&gt;_</text>
+
+    <!-- Sombra -->
+    <ellipse cx="256" cy="458" rx="142" ry="17" fill="#000000" opacity="0.55"/>
+
+    <!-- Patas -->
+    <g fill="#FFC300" stroke="#E6A800" stroke-width="4">
+      <ellipse cx="196" cy="434" rx="48" ry="22"/>
+      <ellipse cx="316" cy="434" rx="48" ry="22"/>
+    </g>
+    <g stroke="#B3202C" stroke-width="3" stroke-linecap="round" opacity="0.45">
+      <path d="M176 424l4 20M196 421v24M216 424l-4 20"/>
+      <path d="M336 424l4 20M316 421v24M296 424l-4 20"/>
+    </g>
+
+    <!-- Aletas -->
+    <ellipse cx="126" cy="326" rx="33" ry="97" transform="rotate(17 126 326)" fill="#0E0E0E" stroke="#F5F5F5" stroke-width="7"/>
+    <ellipse cx="386" cy="326" rx="33" ry="97" transform="rotate(-17 386 326)" fill="#0E0E0E" stroke="#F5F5F5" stroke-width="7"/>
+
+    <!-- Cuerpo -->
+    <ellipse cx="256" cy="272" rx="142" ry="174" fill="#0E0E0E" stroke="#F5F5F5" stroke-width="8"/>
+
+    <!-- Pancita -->
+    <ellipse cx="256" cy="314" rx="92" ry="114" fill="#FFFFFF"/>
+    <path d="M184 268q-18 62 10 112" fill="none" stroke="#E8E8E8" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Ojos -->
+    <ellipse cx="214" cy="208" rx="34" ry="41" fill="#FFFFFF"/>
+    <ellipse cx="298" cy="208" rx="34" ry="41" fill="#FFFFFF"/>
+    <circle cx="221" cy="213" r="14" fill="#0B0B0B"/>
+    <circle cx="291" cy="213" r="14" fill="#0B0B0B"/>
+    <circle cx="226" cy="207" r="4.5" fill="#FFFFFF"/>
+    <circle cx="296" cy="207" r="4.5" fill="#FFFFFF"/>
+
+    <!-- Pico -->
+    <path d="M256 236L294 263L256 291L218 263Z" fill="url(#beak)" stroke="#B3202C" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M256 241v45" stroke="#B3202C" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+
+    <!-- Bandana roja de Tux -->
+    <path d="M124 326Q256 380 388 326V352Q256 406 124 352Z" fill="url(#bandana)" stroke="#B3202C" stroke-width="4"/>
+    <circle cx="382" cy="344" r="17" fill="#E63946" stroke="#B3202C" stroke-width="4"/>
+    <path d="M392 352q42 18 39 70q-2 20-19 12q-20-34-33-70z" fill="#E63946" stroke="#B3202C" stroke-width="3"/>
+    <path d="M374 356q4 42 32 84q8 14-8 16q-30-34-42-84z" fill="#B3202C" opacity="0.96"/>
+
+    <!-- Brillo superior -->
+    <path d="M176 154q26-52 80-52" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.16"/>
+  </g>
+
+  <circle cx="256" cy="256" r="250" fill="none" stroke="#FFC300" stroke-width="8" opacity="0.9"/>
+  <circle cx="256" cy="256" r="238" fill="none" stroke="#E63946" stroke-width="3" opacity="0.55"/>
+</svg>

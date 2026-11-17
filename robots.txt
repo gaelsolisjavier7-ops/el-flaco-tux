@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Carpetas que no aportan nada a los buscadores
+Disallow: /node_modules/
+Disallow: /scripts/
+Disallow: /src/
+
+Sitemap: https://el-flaco-tux.vercel.app/sitemap.xml

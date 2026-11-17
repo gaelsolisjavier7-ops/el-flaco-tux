@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="t d">
+  <title id="t">Aros de Cebolla EL FLACO TUX</title>
+  <desc id="d">Aros de cebolla empanizados y crujientes, apilados junto a un aderezo cremoso.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#3A2A12"/>
+      <stop offset="55%" stop-color="#191210"/>
+      <stop offset="100%" stop-color="#090909"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="46%" r="52%">
+      <stop offset="0%" stop-color="#FFC300" stop-opacity="0.28"/>
+      <stop offset="55%" stop-color="#E63946" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ringGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#F8CB84"/>
+      <stop offset="42%" stop-color="#DB9640"/>
+      <stop offset="100%" stop-color="#94501A"/>
+    </linearGradient>
+    <linearGradient id="ringGrad2" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#EFB160"/>
+      <stop offset="45%" stop-color="#C87D2B"/>
+      <stop offset="100%" stop-color="#7C3F10"/>
+    </linearGradient>
+    <linearGradient id="plateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#262626"/>
+      <stop offset="100%" stop-color="#0E0E0E"/>
+    </linearGradient>
+    <linearGradient id="dipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF7E4"/>
+      <stop offset="100%" stop-color="#E8D8B4"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="13" stdDeviation="11" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    <pattern id="paper" width="56" height="56" patternUnits="userSpaceOnUse">
+      <rect width="56" height="56" fill="#151515"/>
+      <rect width="28" height="28" fill="#1D1D1D"/>
+      <rect x="28" y="28" width="28" height="28" fill="#1D1D1D"/>
+    </pattern>
+    <g id="ring">
+      <ellipse cx="0" cy="17" rx="118" ry="72" fill="#8A4A15" stroke="#4E2609" stroke-width="5"/>
+      <ellipse cx="0" cy="0" rx="118" ry="72" fill="url(#ringGrad)" stroke="#5E2F0C" stroke-width="5"/>
+      <ellipse cx="0" cy="0" rx="54" ry="29" fill="#1B1310" stroke="#3A1B07" stroke-width="5"/>
+      <ellipse cx="0" cy="-2" rx="118" ry="72" fill="none" stroke="#FFE0AE" stroke-opacity="0.32" stroke-width="6"/>
+      <path d="M-96-44C-70-60-30-66 6-60" fill="none" stroke="#FFE7BF" stroke-width="10" stroke-linecap="round" opacity="0.32"/>
+      <g fill="#FFE3B4" opacity="0.65">
+        <circle cx="-78" cy="-24" r="4.6"/>
+        <circle cx="-28" cy="-46" r="3.6"/>
+        <circle cx="40" cy="-40" r="4"/>
+        <circle cx="88" cy="-10" r="3.4"/>
+        <circle cx="76" cy="32" r="4.2"/>
+        <circle cx="18" cy="52" r="3.6"/>
+        <circle cx="-50" cy="40" r="4"/>
+        <circle cx="-100" cy="6" r="3"/>
+      </g>
+    </g>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#paper)" opacity="0.26"/>
+  <circle cx="400" cy="268" r="320" fill="url(#glow)"/>
+  <ellipse cx="400" cy="514" rx="302" ry="44" fill="#000000" opacity="0.55" filter="url(#soft)"/>
+
+  <!-- Plato -->
+  <g filter="url(#shadow)">
+    <ellipse cx="392" cy="318" rx="306" ry="194" fill="url(#plateGrad)" stroke="#353535" stroke-width="7"/>
+    <ellipse cx="392" cy="314" rx="268" ry="162" fill="none" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+  </g>
+
+  <!-- Aros apilados -->
+  <g filter="url(#shadow)">
+    <use href="#ring" transform="translate(300 420) rotate(-6) scale(0.66)"/>
+    <use href="#ring" transform="translate(452 428) rotate(8) scale(0.62)"/>
+    <use href="#ring" transform="translate(372 344) rotate(3) scale(0.72)"/>
+    <use href="#ring" transform="translate(302 284) rotate(-10) scale(0.6)"/>
+    <use href="#ring" transform="translate(452 290) rotate(12) scale(0.58)"/>
+    <use href="#ring" transform="translate(378 232) rotate(-4) scale(0.54)"/>
+  </g>
+
+  <!-- Aro recargado a un lado -->
+  <g filter="url(#shadow)">
+    <g transform="translate(578 402) rotate(-22) scale(0.58)">
+      <ellipse cx="0" cy="16" rx="112" ry="68" fill="#8A4A15" stroke="#4E2609" stroke-width="5"/>
+      <ellipse cx="0" cy="0" rx="112" ry="68" fill="url(#ringGrad2)" stroke="#5E2F0C" stroke-width="5"/>
+      <ellipse cx="0" cy="0" rx="52" ry="27" fill="#1B1310" stroke="#3A1B07" stroke-width="5"/>
+      <g fill="#FFE3B4" opacity="0.6">
+        <circle cx="-70" cy="-28" r="4.4"/>
+        <circle cx="34" cy="-40" r="3.8"/>
+        <circle cx="84" cy="16" r="4"/>
+        <circle cx="-40" cy="42" r="3.6"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Aderezo -->
+  <g filter="url(#shadow)">
+    <circle cx="196" cy="424" r="68" fill="#131313" stroke="#3A3A3A" stroke-width="5"/>
+    <circle cx="196" cy="424" r="54" fill="url(#dipGrad)"/>
+    <path d="M160 416c14-14 30 12 46 0s24 0 20 12" fill="none" stroke="#D6C4A0" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="180" cy="406" rx="14" ry="6" fill="#FFFFFF" opacity="0.7"/>
+  </g>
+
+  <!-- Migajas -->
+  <g fill="#E0A659" opacity="0.7">
+    <circle cx="262" cy="498" r="4"/>
+    <circle cx="486" cy="500" r="3.4"/>
+    <circle cx="428" cy="486" r="2.6"/>
+    <circle cx="322" cy="492" r="2.8"/>
+  </g>
+
+  <path d="M566 122q30-40 70-34" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.15" stroke-linecap="round"/>
+  <path d="M588 150q20-26 46-22" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.11" stroke-linecap="round"/>
+</svg>
