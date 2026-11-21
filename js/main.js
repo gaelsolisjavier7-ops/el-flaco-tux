@@ -32,7 +32,7 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const CATEGORY_META = [
   { id: 'burgers', icon: 'fa-burger', label: 'Hamburguesas' },
   { id: 'hotdogs', icon: 'fa-hotdog', label: 'Jochos Jumbos' },
-  { id: 'alitas', icon: 'fa-drumstick-bite', label: 'Alitas' },
+  { id: 'boneless', icon: 'fa-drumstick-bite', label: 'Boneless' },
   { id: 'sides', icon: 'fa-bowl-food', label: 'Botanas' }
 ];
 
@@ -136,8 +136,8 @@ function escapeHtml(str) {
 function getCategoryLabel(catId) {
   switch (catId) {
     case 'burgers': return 'Hamburguesas';
-    case 'hotdogs': return 'Jochos Jumbos';
-    case 'alitas': return 'Alitas';
+    case 'hotdogs': return 'Hot Dogs Jumbos';
+    case 'boneless': return 'Boneless';
     case 'sides': return 'Botanas';
     default: return 'Todo el Menú';
   }
@@ -159,8 +159,8 @@ function matchProductWithQuery(product, query) {
     categorySynonyms = 'hamburguesa hamburguesas burger burgers carne res plancha';
   } else if (product.category === 'hotdogs') {
     categorySynonyms = 'hotdog hotdogs jocho jochos jumbo perro perros salchicha hot dog pan';
-  } else if (product.category === 'alitas') {
-    categorySynonyms = 'alitas ala pollo boneless bono sin hueso salsa bbq bufalo mango habanero lemon pepper parmesano';
+  } else if (product.category === 'boneless') {
+    categorySynonyms = 'boneless bono sin hueso pollo piezas salsa bbq bufalo mango habanero lemon pepper parmesano';
   } else if (product.category === 'sides') {
     categorySynonyms = 'botanas papas fritas francesas aros cebolla dedos queso compartir acompanamiento';
   }
@@ -350,7 +350,7 @@ function renderProductsInner() {
     const isHotDog = (product.category === 'hotdogs' && product.priceWithFries);
     const addBtnLabel = isHotDog
       ? 'Elegir Opción'
-      : (product.category === 'alitas' ? 'Elegir Salsa' : 'Añadir');
+      : (product.category === 'boneless' ? 'Elegir Salsa' : 'Añadir al Carrito');
     const priceDisplayHtml = isHotDog ? `
       <div class="hotdog-price-dual">
         <div class="price-dual-row">
@@ -595,14 +595,14 @@ function clearSauceError() {
   }
 }
 
-// Salsas: solo para alitas/boneless (product.sauces)
+// Salsas: solo para boneless (product.sauces)
 function renderSauceOptions(product) {
   if (!saucesSelectionGroup || !saucesOptionsContainer) return;
 
   clearSauceError();
 
-  const isAlitas = product.category === 'alitas' || (Array.isArray(product.sauces) && product.sauces.length > 0);
-  const sauces = isAlitas
+  const isBoneless = product.category === 'boneless' || (Array.isArray(product.sauces) && product.sauces.length > 0);
+  const sauces = isBoneless
     ? (Array.isArray(product.sauces) && product.sauces.length > 0
         ? product.sauces
         : ['BBQ', 'Búfalo', 'Mango Habanero', 'Lemon Pepper', 'Parmesano'])
@@ -657,13 +657,13 @@ function recalculateModalPrice() {
 function handleConfirmCustomize() {
   if (!currentProductToCustomize) return;
 
-  // Alitas y boneless: la salsa es obligatoria
+  // Boneless: la salsa es obligatoria
   let sauceLabel = null;
-  const isAlitas = currentProductToCustomize.category === 'alitas' || (Array.isArray(currentProductToCustomize.sauces) && currentProductToCustomize.sauces.length > 0);
-  if (isAlitas) {
+  const isBoneless = currentProductToCustomize.category === 'boneless' || (Array.isArray(currentProductToCustomize.sauces) && currentProductToCustomize.sauces.length > 0);
+  if (isBoneless) {
     const chosenSauce = customizeModalBackdrop.querySelector('input[name="sauce-option"]:checked');
     if (!chosenSauce) {
-      showToast('> ERROR 404: Salsa no encontrada. Selecciona una para continuar.');
+      showToast('> ERROR 404: Falta la salsa. Selecciona una para continuar.');
       if (saucesSelectionGroup) {
         saucesSelectionGroup.classList.remove('sauces-invalid');
         void saucesSelectionGroup.offsetWidth;   // reinicia la animación de sacudida
@@ -672,7 +672,7 @@ function handleConfirmCustomize() {
       }
       if (saucesErrorHint) {
         saucesErrorHint.hidden = false;
-        saucesErrorHint.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Salsa no encontrada. Selecciona una para continuar.';
+        saucesErrorHint.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Falta la salsa. Selecciona una para continuar.';
       }
       if (saucesOptionsContainer) {
         saucesOptionsContainer.setAttribute('aria-invalid', 'true');
@@ -780,7 +780,7 @@ function openProductInLightbox(productId) {
     if (lightboxOrderBtn) {
       const orderLabel = product.category === 'hotdogs'
         ? 'Elegir Presentación y Ordenar'
-        : (product.category === 'alitas' ? 'Elegir Salsa y Ordenar' : 'Añadir al Carrito');
+        : (product.category === 'boneless' ? 'Elegir Salsa y Ordenar' : 'Añadir al Carrito');
       lightboxOrderBtn.innerHTML = '<i class="fa-solid fa-cart-plus"></i> ' + orderLabel;
       lightboxOrderBtn.onclick = () => {
         closeLightbox();
@@ -988,6 +988,17 @@ function setupEventListeners() {
       selectCategory(cat);
     });
   });
+
+  // Banner de promoción: filtra Boneless y lleva al tablero
+  const promoApplyBtn = document.getElementById('promo-apply-btn');
+  if (promoApplyBtn) {
+    promoApplyBtn.addEventListener('click', () => {
+      clearSearch();
+      selectCategory('boneless');
+      showToast('✓ Promo Boneless 2x1 disponible los Martes');
+      document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 
   if (menuSearchInput) {
     menuSearchInput.addEventListener('input', (e) => {

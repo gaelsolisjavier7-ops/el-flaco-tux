@@ -24,9 +24,9 @@ export function quickAddToCart(productId) {
   const product = MENU_DATA.find(p => p.id === productId);
   if (!product) return { success: false, error: 'Product not found' };
 
-  // Hot dogs y alitas necesitan el modal de personalización
-  // (presentación con/sin papas en jochos, salsa obligatoria en alitas)
-  if (product.category === 'hotdogs' || product.category === 'alitas') {
+  // Hot dogs y boneless necesitan el modal de personalización
+  // (presentación con/sin papas en jochos, salsa obligatoria en boneless)
+  if (product.category === 'hotdogs' || product.category === 'boneless') {
     return { success: false, needsCustomization: true };
   }
 

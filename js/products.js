@@ -11,12 +11,13 @@
  * Los platillos siguen guardados en este mismo archivo, así que al
  * volver a `true` reaparecen sin tocar diseño, carrito ni WhatsApp.
  *
- * Estado actual: oferta temporal de alitas, boneless y botanas.
+ * Estado actual: menú completo con hamburguesas, hot dogs jumbos,
+ * boneless y botanas.
  */
 export const CATEGORY_VISIBILITY = {
-  burgers: false,
-  hotdogs: false,
-  alitas: true,
+  burgers: true,
+  hotdogs: true,
+  boneless: true,
   sides: true
 };
 
@@ -29,7 +30,7 @@ const ALL_MENU_DATA = [
     price: 100,
     badge: "Clásica",
     aspectClass: "pin-aspect-standard",
-    description: "Carne de res seleccionada, cebolla caramelizada, lechuga fresca, jamón, queso amarillo derretido y chile jalapeño.",
+    description: "Carne de res, jamón, queso amarillo, lechuga y jalapeño.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_fries.jpg",
     popular: false
@@ -41,7 +42,7 @@ const ALL_MENU_DATA = [
     price: 110,
     badge: "Favorita",
     aspectClass: "pin-aspect-portrait",
-    description: "Carne de res, cebolla caramelizada, lechuga, jamón, queso amarillo, queso de hebra fundido, tocino crujiente, salsa BBQ y chile.",
+    description: "Carne de res, tocino crujiente, queso de hebra y salsa BBQ.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_bacon.jpg",
     popular: true
@@ -53,7 +54,7 @@ const ALL_MENU_DATA = [
     price: 125,
     badge: "Tropical",
     aspectClass: "pin-aspect-standard",
-    description: "Carne de res, cebolla caramelizada, lechuga, jamón, queso amarillo, queso de hebra, piña asada, salsa BBQ y chile.",
+    description: "Carne de res, jamón, queso, piña asada y salsa BBQ.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_combo.jpg",
     popular: false
@@ -65,7 +66,7 @@ const ALL_MENU_DATA = [
     price: 150,
     badge: "🔥 La Más Completa",
     aspectClass: "pin-aspect-tall",
-    description: "Carne de res premium, cebolla caramelizada, lechuga, jamón, queso amarillo, queso de hebra, piña dulce, tocino crujiente, salsa BBQ y chile.",
+    description: "Res, tocino, queso de hebra, piña dulce y salsa BBQ.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_cheese_pull_1790710190015.jpg",
     popular: true
@@ -77,7 +78,7 @@ const ALL_MENU_DATA = [
     price: 120,
     badge: "Pollo Crujiente",
     aspectClass: "pin-aspect-standard",
-    description: "Pechuga de pollo empanizada y cebolla caramelizada, lechuga fresca, queso amarillo derretido y aderezos de la casa.",
+    description: "Pechuga empanizada, lechuga, queso amarillo y aderezos.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_pollo.jpg",
     popular: false
@@ -93,7 +94,7 @@ const ALL_MENU_DATA = [
     priceWithFries: 50,
     badge: "Clásico",
     aspectClass: "pin-aspect-standard",
-    description: "Pan artesanal caliente, salchicha doradita, aderezos cremosos de la casa y salsas.",
+    description: "Salchicha dorada, aderezos cremosos y salsas de la casa.",
     includes: "Con papas: $50 / Sin papas: $40",
     image: "assets/images/hotdog_loaded.jpg",
     popular: false
@@ -107,7 +108,7 @@ const ALL_MENU_DATA = [
     priceWithFries: 55,
     badge: "Queso Fundido",
     aspectClass: "pin-aspect-portrait",
-    description: "Salchicha dorada con generosa porción de queso fundido, aderezos especiales y salsas.",
+    description: "Salchicha con queso fundido, aderezos y salsas.",
     includes: "Con papas: $55 / Sin papas: $45",
     image: "assets/images/hotdog_loaded.jpg",
     popular: false
@@ -121,7 +122,7 @@ const ALL_MENU_DATA = [
     priceWithFries: 75,
     badge: "Tocino Crujiente",
     aspectClass: "pin-aspect-tall",
-    description: "Salchicha envuelta en tocino crujiente, queso fundido, aderezos especiales y salsas.",
+    description: "Salchicha envuelta en tocino, queso fundido y salsas.",
     includes: "Con papas: $75 / Sin papas: $65",
     image: "assets/images/hotdogs_plancha_1790710200592.jpg",
     popular: true
@@ -135,7 +136,7 @@ const ALL_MENU_DATA = [
     priceWithFries: 75,
     badge: "Piña Asada",
     aspectClass: "pin-aspect-standard",
-    description: "Salchicha, queso derretido, tocino crujiente, piña asada caramelizada y salsas.",
+    description: "Tocino crujiente, queso, piña asada y salsas.",
     includes: "Con papas: $75 / Sin papas: $70",
     image: "assets/images/hotdog_hawaiano.jpg",
     popular: false
@@ -149,61 +150,35 @@ const ALL_MENU_DATA = [
     priceWithFries: 90,
     badge: "⭐ Especial de la Casa",
     aspectClass: "pin-aspect-portrait",
-    description: "Salchicha envuelta en tocino crujiente, queso de hebra deshebrado, piña dulce y salsas de la casa.",
+    description: "Tocino, queso de hebra, piña dulce y salsas de la casa.",
     includes: "Con papas: $90 / Sin papas: $80",
     image: "assets/images/hotdog_special.jpg",
     popular: true
   },
 
-  // --- SECCIÓN ALITAS ---
+  // --- SECCIÓN BONELESS (por piezas) ---
   {
-    id: "alitas-6",
-    name: "Alitas 6pz",
-    category: "alitas",
+    id: "boneless-6",
+    name: "Boneless (6 piezas)",
+    category: "boneless",
     price: 90,
-    badge: "Para Compartir",
-    aspectClass: "pin-aspect-standard",
-    description: "Alitas de pollo marinadas y fritas hasta quedar crujientes, bañadas en la salsa de tu elección.",
-    includes: "6 piezas • Elige tu salsa",
-    image: "assets/images/alitas.png",
-    popular: true,
-    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
-  },
-  {
-    id: "alitas-12",
-    name: "Alitas 12pz",
-    category: "alitas",
-    price: 170,
-    badge: "Familiar",
-    aspectClass: "pin-aspect-portrait",
-    description: "Doce alitas crujientes para compartir, bañadas en la salsa que más te guste.",
-    includes: "12 piezas • Elige tu salsa",
-    image: "assets/images/alitas.png",
-    popular: true,
-    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
-  },
-  {
-    id: "boneless-250",
-    name: "Boneless 250g",
-    category: "alitas",
-    price: 95,
     badge: "Sin Hueso",
     aspectClass: "pin-aspect-standard",
-    description: "Trocitos de pechuga de pollo empanizados y bañados en tu salsa favorita. Sin hueso y llenos de sabor.",
-    includes: "250 g • Elige tu salsa",
+    description: "Pollo crujiente sin hueso bañado en tu salsa favorita.",
+    includes: "6 piezas • Elige tu salsa",
     image: "assets/images/boneless.png",
     popular: false,
     sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
   },
   {
-    id: "boneless-500",
-    name: "Boneless 500g",
-    category: "alitas",
-    price: 180,
+    id: "boneless-12",
+    name: "Boneless (12 piezas)",
+    category: "boneless",
+    price: 170,
     badge: "Para Compartir",
     aspectClass: "pin-aspect-tall",
-    description: "Medio kilo de boneless crujientes, perfectos para compartir y probar tu salsa favorita.",
-    includes: "500 g • Elige tu salsa",
+    description: "Doce piezas crujientes para compartir con tu salsa favorita.",
+    includes: "12 piezas • Elige tu salsa",
     image: "assets/images/boneless.png",
     popular: true,
     sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
@@ -217,7 +192,7 @@ const ALL_MENU_DATA = [
     price: 65,
     badge: "Queso Fundido",
     aspectClass: "pin-aspect-portrait",
-    description: "Dedos de queso empanizados y doraditos, con un centro fundido que se estira en cada mordida.",
+    description: "Queso fundido empanizado y doradito.",
     includes: "5 piezas",
     image: "assets/images/dedos_queso.png",
     popular: true,
@@ -230,7 +205,7 @@ const ALL_MENU_DATA = [
     price: 55,
     badge: "Crujientes",
     aspectClass: "pin-aspect-standard",
-    description: "Aros de cebolla empanizados y fritos al momento, doraditos por fuera y dulces por dentro.",
+    description: "Cebolla empanizada, dorada y dulce.",
     includes: "Recién hechos",
     image: "assets/images/aros_cebolla.png",
     popular: false,
@@ -243,7 +218,7 @@ const ALL_MENU_DATA = [
     price: 50,
     badge: "Clásicas",
     aspectClass: "pin-aspect-tall",
-    description: "Papas a la francesa doraditas y sazonadas, recién hechas para acompañar tus antojos.",
+    description: "Papas doradas y sazonadas, recién hechas.",
     includes: "Doradas y sazonadas",
     image: "assets/images/fries_golden_crisp_1790710209462.jpg",
     popular: true,

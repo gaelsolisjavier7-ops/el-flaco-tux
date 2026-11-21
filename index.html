@@ -207,7 +207,7 @@
           </h1>
 
           <p class="hero-desc">
-            Alitas crujientes y boneless sin hueso bañados en la salsa que elijas: BBQ, Búfalo, Mango Habanero, Lemon Pepper o Parmesano. Botanas para compartir en Nanchital de Lázaro Cárdenas del Río, Ver. Acceso root a tu antojo directo desde tu código QR.
+            Boneless sin hueso con 5 salsas y botanas para compartir. Pide por WhatsApp en Nanchital, Ver.
           </p>
 
           <!-- Board Stats / Tags estilo Hacker -->
@@ -246,15 +246,15 @@
             <div class="hero-glow-bg"></div>
 
             <img
-              src="assets/images/alitas.png"
-              alt="Alitas 12 piezas de EL FLACO TUX bañadas en salsa"
+              src="assets/images/boneless.png"
+              alt="Boneless 12 piezas de EL FLACO TUX bañado en salsa"
               id="hero-img"
               class="hero-burger-img"
               role="button"
               tabindex="0"
               title="Ver el platillo"
-              onclick="openProductInLightbox('alitas-12')"
-              onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductInLightbox('alitas-12');}"
+              onclick="openProductInLightbox('boneless-12')"
+              onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductInLightbox('boneless-12');}"
             >
 
             <!-- Mascota Tux Flotante con animación @keyframes float -->
@@ -267,7 +267,7 @@
 
             <div class="hero-stage-caption">
               <span class="hero-stage-tag"><i class="fa-solid fa-circle-check"></i> &lt;Pin Destacado /&gt;</span>
-              <span class="hero-stage-name">Alitas 12pz EL FLACO TUX</span>
+              <span class="hero-stage-name">Boneless (12 piezas) EL FLACO TUX</span>
               <span class="hero-stage-price">$170</span>
             </div>
           </div>
@@ -316,17 +316,28 @@
   </section>
 
   <!-- ==========================================================================
-       PROMOTION BANNER
+       PROMOTION BANNER — TERMINAL PROMO
        ========================================================================== -->
   <div class="container" id="promo">
-    <div class="promo-banner scroll-reveal">
-      <div class="promo-content">
-        <h3>🌶️ ELIGE TU SALSA: BBQ, BÚFALO, MANGO HABANERO, LEMON PEPPER O PARMESANO</h3>
-        <p>Alitas y boneless bañados al momento, con botanas para compartir. Pide por WhatsApp y recíbelo calientito en Nanchital.</p>
+    <div class="promo-terminal scroll-reveal" role="region" aria-label="Promoción activa">
+      <div class="promo-terminal-bar" aria-hidden="true">
+        <span class="terminal-circle circle-red"></span>
+        <span class="terminal-circle circle-yellow"></span>
+        <span class="terminal-circle circle-green"></span>
+        <span class="promo-terminal-title">tux@el-flaco-tux:~/promos</span>
       </div>
-      <a href="#menu" class="btn btn-outline" style="background: white; color: #111; font-weight: 800;">
-        ¡Quiero Mis Alitas!
-      </a>
+      <div class="promo-terminal-body">
+        <p class="promo-terminal-line">
+          <span class="promo-terminal-prompt">&gt;</span>
+          <span class="promo-terminal-text">PROMO_ACTIVA:</span>
+          <span class="promo-terminal-highlight">2x1 en Boneless (6 pz)</span>
+          <span class="promo-terminal-text">todos los Martes.</span>
+          <span class="promo-terminal-cursor" aria-hidden="true"></span>
+        </p>
+        <button type="button" class="promo-terminal-btn" id="promo-apply-btn">
+          [ APLICAR PROMO ]
+        </button>
+      </div>
     </div>
   </div>
 
@@ -388,16 +399,16 @@
       <!-- Filter Buttons (Pinterest Board Category Tabs) -->
       <div class="menu-filters scroll-reveal" style="--fade-idx: 2;" role="tablist" aria-label="Filtro de categorías del tablero">
         <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">
-          <i class="fa-solid fa-thumbtack"></i> Todo el Tablero
+          <i class="fa-solid fa-thumbtack"></i> Todo
         </button>
         <button class="filter-btn" data-category="burgers" role="tab" aria-selected="false">
           <i class="fa-solid fa-burger"></i> Hamburguesas
         </button>
         <button class="filter-btn" data-category="hotdogs" role="tab" aria-selected="false">
-          <i class="fa-solid fa-hotdog"></i> Jochos Jumbos
+          <i class="fa-solid fa-hotdog"></i> Hot Dogs Jumbos
         </button>
-        <button class="filter-btn" data-category="alitas" role="tab" aria-selected="false">
-          <i class="fa-solid fa-drumstick-bite"></i> Alitas
+        <button class="filter-btn" data-category="boneless" role="tab" aria-selected="false">
+          <i class="fa-solid fa-drumstick-bite"></i> Boneless
         </button>
         <button class="filter-btn" data-category="sides" role="tab" aria-selected="false">
           <i class="fa-solid fa-bowl-food"></i> Botanas
@@ -646,11 +657,11 @@
           <i class="fa-solid fa-pepper-hot text-secondary"></i> Elige tu salsa
           <span class="options-required-tag">Obligatorio</span>
         </div>
-        <div class="sauce-options-grid" id="sauces-options-container" role="radiogroup" aria-label="Elige la salsa para tus alitas" tabindex="-1">
+        <div class="sauce-options-grid" id="sauces-options-container" role="radiogroup" aria-label="Elige la salsa para tus boneless" tabindex="-1">
           <!-- Injected dynamically -->
         </div>
         <p class="sauce-error-hint" id="sauces-error-hint" role="alert" hidden>
-          <i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Salsa no encontrada.
+          <i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Falta la salsa. Selecciona una para continuar.
         </p>
       </div>
 

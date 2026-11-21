@@ -97,9 +97,9 @@
   --whatsapp-hover: #1EBE57;
   --whatsapp-glow: rgba(37, 211, 102, 0.25);
 
-  --text-main: #121212;
-  --text-muted: #5A5A5A;
-  --text-dim: #8A8A8A;
+  --text-main: #1A1A1A;
+  --text-muted: #555555;
+  --text-dim: #6B6B6B;
 
   --border-light: rgba(0, 0, 0, 0.12);
   --border-strong: rgba(0, 0, 0, 0.26);
@@ -7547,5 +7547,245 @@ body::before {
 @media (max-width: 360px) {
   .logo-main-text {
     font-size: 1.05rem;
+  }
+}
+
+/* ==========================================================================
+   24. CORRECCIÓN DE LEGIBILIDAD EN MODO CLARO
+   El hero "smash" y varios componentes tenían colores blancos fijos que se
+   perdían sobre el fondo claro. Aquí se fuerza el texto oscuro usando las
+   variables del tema y se conservan los botones rojos con texto blanco.
+   ========================================================================== */
+
+/* --- Hero: titular y descripción sobre fondo claro --- */
+[data-theme="light"] .smash-hero {
+  border-bottom-color: var(--border-light);
+}
+
+[data-theme="light"] .smash-hero .hero-title {
+  color: var(--text-main);
+}
+
+/* Acento "EL FLACO TUX": ámbar oscuro para contrastar sobre blanco */
+[data-theme="light"] .smash-hero .hero-title .hero-title-brand {
+  color: #B45309;
+}
+
+[data-theme="light"] .smash-hero .hero-desc {
+  color: var(--text-muted);
+}
+
+/* Botón secundario del hero: borde y texto oscuros sobre fondo claro */
+[data-theme="light"] .btn-smash-outline {
+  border-color: var(--text-main);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .btn-smash-outline:hover {
+  background: var(--text-main);
+  color: var(--bg-surface);
+}
+
+/* --- Títulos generales (h1, h2, h3) en oscuro --- */
+[data-theme="light"] .section-title,
+[data-theme="light"] .step-card h3,
+[data-theme="light"] .feature-text h4,
+[data-theme="light"] .coverage-box-title,
+[data-theme="light"] .lightbox-title,
+[data-theme="light"] .modal-header h3,
+[data-theme="light"] .cart-header h3 {
+  color: var(--text-main);
+}
+
+/* --- Tarjetas de producto: título oscuro y descripción gris medio --- */
+[data-theme="light"] .pin-title,
+[data-theme="light"] .product-title {
+  color: var(--text-main);
+}
+
+[data-theme="light"] .pin-desc,
+[data-theme="light"] .product-desc,
+[data-theme="light"] .section-subtitle,
+[data-theme="light"] .step-card p {
+  color: var(--text-muted);
+}
+
+/* --- Botones principales: fondo rojo y texto blanco garantizados --- */
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-primary:hover,
+[data-theme="light"] .btn-smash-primary,
+[data-theme="light"] .btn-smash-primary:hover,
+[data-theme="light"] .pin-save-btn,
+[data-theme="light"] .pin-save-btn:hover,
+[data-theme="light"] .pin-mobile-add-btn,
+[data-theme="light"] .pin-mobile-add-btn:hover,
+[data-theme="light"] .filter-btn.active,
+[data-theme="light"] .filter-btn.active:hover {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   25. BANNER DE PROMOCIÓN ESTILO TERMINAL
+   ========================================================================== */
+.promo-terminal {
+  margin-bottom: 70px;
+  background: #0A0A0A;
+  border: 1px solid #2A2A2A;
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 24px rgba(230, 57, 70, 0.12);
+  font-family: var(--font-mono);
+}
+
+.promo-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: #141414;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.promo-terminal-title {
+  margin-left: 8px;
+  color: #8E8E93;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.promo-terminal-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 26px 28px;
+  background: linear-gradient(135deg, #0A0A0A 0%, #121212 100%);
+}
+
+.promo-terminal-line {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.promo-terminal-prompt {
+  color: #00FF41;
+  margin-right: 6px;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.45);
+}
+
+.promo-terminal-text {
+  color: #FFFFFF;
+}
+
+.promo-terminal-highlight {
+  color: var(--secondary);
+}
+
+.promo-terminal-cursor {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  margin-left: 6px;
+  vertical-align: -0.15em;
+  background: #00FF41;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  animation: terminal-blink 1.1s steps(1, end) infinite;
+}
+
+.promo-terminal-btn {
+  flex-shrink: 0;
+  min-height: 50px;
+  padding: 14px 24px;
+  background: var(--primary);
+  color: #FFFFFF;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0 18px var(--primary-glow);
+}
+
+.promo-terminal-btn:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 0 26px var(--primary-glow);
+}
+
+.promo-terminal-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ==========================================================================
+   26. BOTONES "AÑADIR AL CARRITO" GRANDES Y TÁCTILES
+   Rojo bandana de Tux (--primary) con texto blanco y objetivos táctiles
+   cómodos en móvil.
+   ========================================================================== */
+.pin-save-btn {
+  min-height: 48px;
+  padding: 12px 22px;
+  background: var(--primary);
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 900;
+  box-shadow: 0 6px 18px rgba(230, 57, 70, 0.35);
+}
+
+.pin-save-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.5);
+}
+
+.pin-mobile-add-btn {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  font-weight: 900;
+}
+
+.pin-mobile-add-btn:hover {
+  background: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+  .pin-mobile-add-btn {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+
+  .pin-save-btn,
+  .btn-primary {
+    min-height: 54px;
+  }
+}
+
+@media (max-width: 640px) {
+  .promo-terminal {
+    margin-bottom: 48px;
+  }
+
+  .promo-terminal-body {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 22px;
+  }
+
+  .promo-terminal-btn {
+    width: 100%;
+    min-height: 54px;
   }
 }
