@@ -347,22 +347,10 @@ function renderProductsInner() {
     const descHtml = hasSearch ? highlightMatches(product.description, queryTrimmed) : product.description;
     const includesHtml = product.includes ? (hasSearch ? highlightMatches(product.includes, queryTrimmed) : product.includes) : '';
 
-    const isHotDog = (product.category === 'hotdogs' && product.priceWithFries);
-    const addBtnLabel = isHotDog
-      ? 'Elegir Opción'
-      : (product.category === 'boneless' ? 'Elegir Salsa' : 'Añadir al Carrito');
-    const priceDisplayHtml = isHotDog ? `
-      <div class="hotdog-price-dual">
-        <div class="price-dual-row">
-          <span class="price-dual-val">${STORE_CONFIG.currency}${product.price}</span>
-          <span class="price-dual-tag">Sin papas</span>
-        </div>
-        <div class="price-dual-row highlight">
-          <span class="price-dual-val">${STORE_CONFIG.currency}${product.priceWithFries}</span>
-          <span class="price-dual-tag">Con papas 🍟</span>
-        </div>
-      </div>
-    ` : `
+    const addBtnLabel = product.category === 'boneless'
+      ? 'Elegir Salsa'
+      : 'Añadir al Carrito';
+    const priceDisplayHtml = `
       <div class="pin-price-wrap">
         <span class="pin-price-val">${STORE_CONFIG.currency}${product.price}</span>
         ${product.includes && product.category === 'burgers' ? '<span class="pin-fries-tag">🍟 Incluye Papas</span>' : ''}
@@ -494,10 +482,7 @@ function openCustomizeModal(productId) {
   currentProductToCustomize = product;
   modalProductTitle.textContent = `Personalizar: ${product.name}`;
 
-  const isHotDog = (product.category === 'hotdogs');
-  const displayBasePrice = isHotDog 
-    ? `Sin papas: ${STORE_CONFIG.currency}${product.priceWithoutFries || product.price} / Con papas: ${STORE_CONFIG.currency}${product.priceWithFries}`
-    : `${STORE_CONFIG.currency}${product.price}`;
+  const displayBasePrice = `${STORE_CONFIG.currency}${product.price}`;
 
   customizeProductDetails.innerHTML = `
     <div style="display: flex; gap: 14px; align-items: center; background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
@@ -507,52 +492,23 @@ function openCustomizeModal(productId) {
     </div>
   `;
 
-  const hotdogFriesGroup = document.getElementById('hotdog-fries-selection-group');
-  const hotdogFriesContainer = document.getElementById('hotdog-fries-options-container');
-
-  if (hotdogFriesGroup && hotdogFriesContainer) {
-    if (isHotDog && product.priceWithFries) {
-      hotdogFriesGroup.style.display = 'block';
-      hotdogFriesContainer.innerHTML = `
-        <label class="fries-choice-card" id="card-choice-no">
-          <input type="radio" name="hotdog-fries-option" value="no" class="hotdog-fries-radio">
-          <div class="fries-choice-info">
-            <span class="fries-choice-label">Sin papas</span>
-            <span class="fries-choice-price">${STORE_CONFIG.currency}${product.priceWithoutFries || product.price}</span>
-          </div>
-        </label>
-        <label class="fries-choice-card active" id="card-choice-yes">
-          <input type="radio" name="hotdog-fries-option" value="yes" checked class="hotdog-fries-radio">
-          <div class="fries-choice-info">
-            <span class="fries-choice-label">🍟 Con papas fritas</span>
-            <span class="fries-choice-price">${STORE_CONFIG.currency}${product.priceWithFries}</span>
-          </div>
-        </label>
-      `;
-      hotdogFriesContainer.querySelectorAll('.hotdog-fries-radio').forEach(r => {
-        r.addEventListener('change', () => {
-          hotdogFriesContainer.querySelectorAll('.fries-choice-card').forEach(c => c.classList.remove('active'));
-          r.closest('.fries-choice-card').classList.add('active');
-          recalculateModalPrice();
-        });
-      });
-    } else {
-      hotdogFriesGroup.style.display = 'none';
-      hotdogFriesContainer.innerHTML = '';
-    }
-  }
-
   renderSauceOptions(product);
 
   const exclusionsGroup = document.getElementById('exclusions-selection-group');
   const extrasGroup = document.getElementById('extras-selection-group');
+  const customNoteGroup = customItemNoteInput ? customItemNoteInput.closest('.form-group') : null;
   const hasExclusionsAndExtras = (product.category === 'burgers' || product.category === 'hotdogs');
+  const isBoneless = product.category === 'boneless';
 
   if (exclusionsGroup) {
     exclusionsGroup.style.display = hasExclusionsAndExtras ? 'block' : 'none';
   }
   if (extrasGroup) {
     extrasGroup.style.display = hasExclusionsAndExtras ? 'block' : 'none';
+  }
+  if (customNoteGroup) {
+    // Boneless: el modal solo muestra la selección de salsa (obligatoria).
+    customNoteGroup.style.display = isBoneless ? 'none' : 'block';
   }
 
   exclusionsOptionsContainer.innerHTML = hasExclusionsAndExtras ? CUSTOM_OPTIONS.exclusions.map(ex => `
@@ -624,15 +580,26 @@ function renderSauceOptions(product) {
   saucesSelectionGroup.style.display = 'block';
   saucesOptionsContainer.innerHTML = sauces.map((sauce, idx) => `
     <label class="sauce-choice-card">
-      <input type="radio" name="sauce-option" value="${sauce}" id="sauce-option-${idx}" class="sauce-radio">
+      <input type="checkbox" name="sauce-option" value="${sauce}" id="sauce-option-${idx}" class="sauce-checkbox">
       <span class="sauce-choice-label">${sauce}</span>
     </label>
   `).join('');
 
-  saucesOptionsContainer.querySelectorAll('.sauce-radio').forEach(radio => {
-    radio.addEventListener('change', () => {
-      saucesOptionsContainer.querySelectorAll('.sauce-choice-card').forEach(card => card.classList.remove('active'));
-      radio.closest('.sauce-choice-card')?.classList.add('active');
+  const sauceCheckboxes = Array.from(saucesOptionsContainer.querySelectorAll('.sauce-checkbox'));
+  sauceCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const checkedSauces = sauceCheckboxes.filter(cb => cb.checked);
+
+      // Máximo 2 salsas: se desmarca la tercera y se avisa al cliente.
+      if (checkedSauces.length > 2) {
+        checkbox.checked = false;
+        checkbox.closest('.sauce-choice-card')?.classList.remove('active');
+        clearSauceError();
+        showToast('> ERROR: Máximo 2 salsas por orden.');
+        return;
+      }
+
+      checkbox.closest('.sauce-choice-card')?.classList.toggle('active', checkbox.checked);
       clearSauceError();
     });
   });
@@ -641,12 +608,6 @@ function renderSauceOptions(product) {
 function recalculateModalPrice() {
   if (!currentProductToCustomize) return;
   let base = currentProductToCustomize.price;
-  if (currentProductToCustomize.category === 'hotdogs') {
-    const withFries = customizeModalBackdrop.querySelector('input[name="hotdog-fries-option"]:checked')?.value === 'yes';
-    base = withFries 
-      ? (currentProductToCustomize.priceWithFries || currentProductToCustomize.price) 
-      : (currentProductToCustomize.priceWithoutFries || currentProductToCustomize.price);
-  }
   const checkedExtras = customizeModalBackdrop.querySelectorAll('.custom-extra-chk:checked');
   checkedExtras.forEach(chk => {
     base += parseFloat(chk.getAttribute('data-price') || 0);
@@ -657,13 +618,16 @@ function recalculateModalPrice() {
 function handleConfirmCustomize() {
   if (!currentProductToCustomize) return;
 
-  // Boneless: la salsa es obligatoria
-  let sauceLabel = null;
+  // Boneless: se permiten de 1 a 2 salsas (al menos una es obligatoria)
+  let selectedSauces = [];
   const isBoneless = currentProductToCustomize.category === 'boneless' || (Array.isArray(currentProductToCustomize.sauces) && currentProductToCustomize.sauces.length > 0);
   if (isBoneless) {
-    const chosenSauce = customizeModalBackdrop.querySelector('input[name="sauce-option"]:checked');
-    if (!chosenSauce) {
-      showToast('> ERROR 404: Falta la salsa. Selecciona una para continuar.');
+    selectedSauces = Array.from(
+      customizeModalBackdrop.querySelectorAll('input[name="sauce-option"]:checked')
+    ).map(cb => cb.value);
+
+    if (selectedSauces.length === 0) {
+      showToast('> ERROR 404: Falta la salsa. Selecciona al menos una.');
       if (saucesSelectionGroup) {
         saucesSelectionGroup.classList.remove('sauces-invalid');
         void saucesSelectionGroup.offsetWidth;   // reinicia la animación de sacudida
@@ -672,7 +636,7 @@ function handleConfirmCustomize() {
       }
       if (saucesErrorHint) {
         saucesErrorHint.hidden = false;
-        saucesErrorHint.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Falta la salsa. Selecciona una para continuar.';
+        saucesErrorHint.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Falta la salsa. Selecciona al menos una.';
       }
       if (saucesOptionsContainer) {
         saucesOptionsContainer.setAttribute('aria-invalid', 'true');
@@ -680,27 +644,21 @@ function handleConfirmCustomize() {
       }
       return;
     }
-    sauceLabel = chosenSauce.value;
+
+    // Protección adicional por si el estado del DOM cambiara fuera del listener.
+    if (selectedSauces.length > 2) {
+      showToast('> ERROR: Máximo 2 salsas por orden.');
+      return;
+    }
   }
 
-  let basePrice = currentProductToCustomize.price;
-  let itemDisplayName = currentProductToCustomize.name;
-  let friesOptionLabel = null;
+  const basePrice = currentProductToCustomize.price;
+  const itemDisplayName = currentProductToCustomize.name;
   const noteParts = [];
 
-  if (currentProductToCustomize.category === 'hotdogs') {
-    const withFries = customizeModalBackdrop.querySelector('input[name="hotdog-fries-option"]:checked')?.value === 'yes';
-    basePrice = withFries 
-      ? (currentProductToCustomize.priceWithFries || currentProductToCustomize.price) 
-      : (currentProductToCustomize.priceWithoutFries || currentProductToCustomize.price);
-    itemDisplayName = `${currentProductToCustomize.name} ${withFries ? '(Con Papas 🍟)' : '(Sin Papas)'}`;
-    friesOptionLabel = withFries ? '🍟 Combo con papas fritas' : 'Sin papas';
-  }
-
-  if (sauceLabel) {
-    // La salsa no va en el nombre para no duplicarla: se guarda en las notas
-    // del carrito como "Salsa: Mango Habanero".
-    noteParts.push(`Salsa: ${sauceLabel}`);
+  if (selectedSauces.length > 0) {
+    // Las salsas se guardan en las notas del carrito como "Salsas: BBQ, Búfalo".
+    noteParts.push(`Salsas: ${selectedSauces.join(', ')}`);
   }
 
   const exclusions = Array.from(customizeModalBackdrop.querySelectorAll('.custom-exclusion-chk:checked')).map(c => c.value);
@@ -726,8 +684,7 @@ function handleConfirmCustomize() {
     exclusions: exclusions,
     extras: extras,
     note: note,
-    friesChoice: friesOptionLabel,
-    sauce: sauceLabel
+    sauce: selectedSauces.length > 0 ? selectedSauces.join(', ') : null
   }];
   setCart(updatedCart);
   updateCartUI();
@@ -769,18 +726,16 @@ function openProductInLightbox(productId) {
     if (lightboxDesc) lightboxDesc.textContent = product.description;
     
     let priceText = `${STORE_CONFIG.currency}${product.price} MXN`;
-    if (product.category === 'hotdogs' && product.priceWithFries) {
-      priceText = `Sin papas: ${STORE_CONFIG.currency}${product.price} / Con papas: ${STORE_CONFIG.currency}${product.priceWithFries} 🍟`;
-    } else if (product.includes) {
+    if (product.includes) {
       priceText = `${STORE_CONFIG.currency}${product.price} MXN (${product.includes})`;
     }
     if (lightboxPrice) lightboxPrice.textContent = priceText;
     if (lightboxCategory) lightboxCategory.textContent = getCategoryLabel(product.category);
 
     if (lightboxOrderBtn) {
-      const orderLabel = product.category === 'hotdogs'
-        ? 'Elegir Presentación y Ordenar'
-        : (product.category === 'boneless' ? 'Elegir Salsa y Ordenar' : 'Añadir al Carrito');
+      const orderLabel = product.category === 'boneless'
+        ? 'Elegir Salsa y Ordenar'
+        : 'Añadir al Carrito';
       lightboxOrderBtn.innerHTML = '<i class="fa-solid fa-cart-plus"></i> ' + orderLabel;
       lightboxOrderBtn.onclick = () => {
         closeLightbox();
@@ -989,13 +944,10 @@ function setupEventListeners() {
     });
   });
 
-  // Banner de promoción: filtra Boneless y lleva al tablero
-  const promoApplyBtn = document.getElementById('promo-apply-btn');
-  if (promoApplyBtn) {
-    promoApplyBtn.addEventListener('click', () => {
-      clearSearch();
-      selectCategory('boneless');
-      showToast('✓ Promo Boneless 2x1 disponible los Martes');
+  // Banner de promoción: lleva directo al menú
+  const promoMenuBtn = document.getElementById('promo-menu-btn');
+  if (promoMenuBtn) {
+    promoMenuBtn.addEventListener('click', () => {
       document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }

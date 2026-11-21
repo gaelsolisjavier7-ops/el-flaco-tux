@@ -24,9 +24,9 @@ export function quickAddToCart(productId) {
   const product = MENU_DATA.find(p => p.id === productId);
   if (!product) return { success: false, error: 'Product not found' };
 
-  // Hot dogs y boneless necesitan el modal de personalización
-  // (presentación con/sin papas en jochos, salsa obligatoria en boneless)
-  if (product.category === 'hotdogs' || product.category === 'boneless') {
+  // Boneless necesita el modal de personalización (salsa obligatoria).
+  // Los hot dogs ya incluyen papas por defecto y se agregan directo.
+  if (product.category === 'boneless') {
     return { success: false, needsCustomization: true };
   }
 
@@ -137,19 +137,18 @@ export function updateCartUI() {
       const hasCustoms = (item.exclusions && item.exclusions.length > 0) || 
                           (item.extras && item.extras.length > 0) || 
                           item.note ||
-                          item.friesChoice ||
                           item.sauce;
 
       let customsHtml = '';
       if (hasCustoms) {
-        const sauceTxt = (item.sauce && !(item.note || '').includes('Salsa:'))
+        const hasSalsasInNote = /salsas?:\s*/i.test(item.note || '');
+        const sauceTxt = (item.sauce && !hasSalsasInNote)
           ? `<span style="color: var(--secondary); font-weight: 700;">🌶️ Salsa: ${item.sauce}</span>`
           : '';
-        const friesTxt = item.friesChoice ? `<span style="color: var(--secondary); font-weight: 700;">${item.friesChoice}</span>` : '';
         const exclusionsTxt = item.exclusions && item.exclusions.length > 0 ? `⛔ ${item.exclusions.join(', ')}` : '';
         const extrasTxt = item.extras && item.extras.length > 0 ? `✨ Extras: ${item.extras.map(e => e.label).join(', ')}` : '';
         const noteTxt = item.note ? `📝 ${item.note}` : '';
-        customsHtml = `<div class="cart-item-notes">${[sauceTxt, friesTxt, exclusionsTxt, extrasTxt, noteTxt].filter(Boolean).join('<br>')}</div>`;
+        customsHtml = `<div class="cart-item-notes">${[sauceTxt, exclusionsTxt, extrasTxt, noteTxt].filter(Boolean).join('<br>')}</div>`;
       }
 
       return `

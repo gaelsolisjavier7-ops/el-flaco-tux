@@ -8,7 +8,7 @@
  * (por ejemplo 'v2') para que los clientes reciban la versión nueva.
  */
 
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v8';
 const CACHE_NAME = `flaco-tux-${CACHE_VERSION}`;
 
 // Rutas relativas al alcance del SW (raíz del sitio)

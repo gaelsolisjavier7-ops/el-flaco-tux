@@ -3342,6 +3342,14 @@ mark.search-highlight {
   vertical-align: middle;
 }
 
+.sauce-help-text {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 .sauce-options-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3386,17 +3394,34 @@ mark.search-highlight {
   outline-offset: 2px;
 }
 
-.sauce-choice-card input[type="radio"] {
-  accent-color: var(--primary);
-  width: 16px;
-  height: 16px;
+.sauce-choice-card input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
   margin: 0;
   flex: 0 0 auto;
   cursor: pointer;
+  background-color: var(--bg-main);
+  border: 2px solid var(--border-light);
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.sauce-choice-card input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ffffff' d='M6.2 11.7 2.5 8l1.4-1.4 2.3 2.3 5.9-5.9L13.5 4z'/%3E%3C/svg%3E");
+  background-size: 13px 13px;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px var(--primary-glow);
 }
 
 .sauce-choice-label {
   line-height: 1.2;
+  color: var(--text-main);
 }
 
 .sauce-error-hint {
@@ -7628,6 +7653,7 @@ body::before {
    25. BANNER DE PROMOCIÓN ESTILO TERMINAL
    ========================================================================== */
 .promo-terminal {
+  position: relative;
   margin-bottom: 70px;
   background: #0A0A0A;
   border: 1px solid #2A2A2A;
@@ -7636,6 +7662,22 @@ body::before {
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 24px rgba(230, 57, 70, 0.12);
   font-family: var(--font-mono);
+}
+
+/* Scanlines sutiles para reforzar el look terminal/hacker */
+.promo-terminal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 65, 0.045) 0px,
+    rgba(0, 255, 65, 0.045) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.55;
 }
 
 .promo-terminal-bar {
@@ -7685,6 +7727,17 @@ body::before {
 
 .promo-terminal-highlight {
   color: var(--secondary);
+}
+
+.promo-discount {
+  display: inline-block;
+  padding: 0 0.35em;
+  color: #00FF41;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  border-radius: 4px;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.65);
+  box-shadow: 0 0 14px rgba(0, 255, 65, 0.18);
 }
 
 .promo-terminal-cursor {

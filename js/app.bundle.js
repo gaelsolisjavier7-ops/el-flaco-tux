@@ -33,7 +33,7 @@ const ALL_MENU_DATA = [
   // --- SECCIÓN HAMBURGUESAS (Todas incluyen papas) ---
   {
     id: "burger-sencilla",
-    name: "Burguer Sencilla",
+    name: "Hamburguesa Sencilla",
     category: "burgers",
     price: 100,
     badge: "Clásica",
@@ -45,7 +45,7 @@ const ALL_MENU_DATA = [
   },
   {
     id: "burger-tocino",
-    name: "Burguer de Tocino",
+    name: "Hamburguesa de Tocino",
     category: "burgers",
     price: 110,
     badge: "Favorita",
@@ -57,9 +57,9 @@ const ALL_MENU_DATA = [
   },
   {
     id: "burger-hawaiana",
-    name: "Burguer Hawaiana",
+    name: "Hamburguesa Hawaiana",
     category: "burgers",
-    price: 125,
+    price: 120,
     badge: "Tropical",
     aspectClass: "pin-aspect-standard",
     description: "Carne de res, jamón, queso, piña asada y salsa BBQ.",
@@ -69,41 +69,27 @@ const ALL_MENU_DATA = [
   },
   {
     id: "burger-especial",
-    name: "Burguer Especial",
+    name: "Hamburguesa Doble Carne",
     category: "burgers",
     price: 150,
     badge: "🔥 La Más Completa",
     aspectClass: "pin-aspect-tall",
-    description: "Res, tocino, queso de hebra, piña dulce y salsa BBQ.",
+    description: "Carne de res doble, queso de hebra, queso americano y salsa BBQ.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_cheese_pull_1790710190015.jpg",
     popular: true
   },
-  {
-    id: "burger-pollo",
-    name: "Burguer de Pollo",
-    category: "burgers",
-    price: 120,
-    badge: "Pollo Crujiente",
-    aspectClass: "pin-aspect-standard",
-    description: "Pechuga empanizada, lechuga, queso amarillo y aderezos.",
-    includes: "🍟 Incluye porción de papas",
-    image: "assets/images/burger_pollo.jpg",
-    popular: false
-  },
 
-  // --- SECCIÓN JOCHOS JUMBOS ---
+  // --- SECCIÓN JOCHOS JUMBOS (Todos incluyen papas) ---
   {
     id: "hotdog-sencillo",
     name: "Hot Dog Sencillo",
     category: "hotdogs",
-    price: 40,
-    priceWithoutFries: 40,
-    priceWithFries: 50,
+    price: 50,
     badge: "Clásico",
     aspectClass: "pin-aspect-standard",
     description: "Salchicha dorada, aderezos cremosos y salsas de la casa.",
-    includes: "Con papas: $50 / Sin papas: $40",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/hotdog_loaded.jpg",
     popular: false
   },
@@ -111,13 +97,11 @@ const ALL_MENU_DATA = [
     id: "hotdog-queso",
     name: "Hot Dog de Queso",
     category: "hotdogs",
-    price: 45,
-    priceWithoutFries: 45,
-    priceWithFries: 55,
+    price: 55,
     badge: "Queso Fundido",
     aspectClass: "pin-aspect-portrait",
     description: "Salchicha con queso fundido, aderezos y salsas.",
-    includes: "Con papas: $55 / Sin papas: $45",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/hotdog_loaded.jpg",
     popular: false
   },
@@ -125,13 +109,11 @@ const ALL_MENU_DATA = [
     id: "hotdog-tocino",
     name: "Hot Dog de Tocino",
     category: "hotdogs",
-    price: 65,
-    priceWithoutFries: 65,
-    priceWithFries: 75,
+    price: 70,
     badge: "Tocino Crujiente",
     aspectClass: "pin-aspect-tall",
     description: "Salchicha envuelta en tocino, queso fundido y salsas.",
-    includes: "Con papas: $75 / Sin papas: $65",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/hotdogs_plancha_1790710200592.jpg",
     popular: true
   },
@@ -139,13 +121,11 @@ const ALL_MENU_DATA = [
     id: "hotdog-hawaiano",
     name: "Hot Dog Hawaiano",
     category: "hotdogs",
-    price: 70,
-    priceWithoutFries: 70,
-    priceWithFries: 75,
+    price: 75,
     badge: "Piña Asada",
     aspectClass: "pin-aspect-standard",
     description: "Tocino crujiente, queso, piña asada y salsas.",
-    includes: "Con papas: $75 / Sin papas: $70",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/hotdog_hawaiano.jpg",
     popular: false
   },
@@ -153,27 +133,25 @@ const ALL_MENU_DATA = [
     id: "hotdog-combinado",
     name: "Hot Dog Combinado",
     category: "hotdogs",
-    price: 80,
-    priceWithoutFries: 80,
-    priceWithFries: 90,
+    price: 90,
     badge: "⭐ Especial de la Casa",
     aspectClass: "pin-aspect-portrait",
     description: "Tocino, queso de hebra, piña dulce y salsas de la casa.",
-    includes: "Con papas: $90 / Sin papas: $80",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/hotdog_special.jpg",
     popular: true
   },
 
-  // --- SECCIÓN BONELESS (por piezas) ---
+  // --- SECCIÓN BONELESS (por piezas, todos incluyen papas) ---
   {
-    id: "boneless-6",
-    name: "Boneless (6 piezas)",
+    id: "boneless-5",
+    name: "Boneless (5 piezas)",
     category: "boneless",
-    price: 90,
+    price: 80,
     badge: "Sin Hueso",
     aspectClass: "pin-aspect-standard",
     description: "Pollo crujiente sin hueso bañado en tu salsa favorita.",
-    includes: "6 piezas • Elige tu salsa",
+    includes: "5 piezas • 🍟 Incluye porción de papas",
     image: "assets/images/boneless.png",
     popular: false,
     sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
@@ -182,54 +160,54 @@ const ALL_MENU_DATA = [
     id: "boneless-12",
     name: "Boneless (12 piezas)",
     category: "boneless",
-    price: 170,
+    price: 150,
     badge: "Para Compartir",
     aspectClass: "pin-aspect-tall",
     description: "Doce piezas crujientes para compartir con tu salsa favorita.",
-    includes: "12 piezas • Elige tu salsa",
+    includes: "12 piezas • 🍟 Incluye porción de papas",
     image: "assets/images/boneless.png",
     popular: true,
     sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
   },
+  {
+    id: "boneless-25",
+    name: "Boneless (25 piezas)",
+    category: "boneless",
+    price: 280,
+    badge: "Fiesta",
+    aspectClass: "pin-aspect-standard",
+    description: "Veinticinco piezas crujientes para compartir en grande.",
+    includes: "25 piezas • 🍟 Incluye porción de papas",
+    image: "assets/images/boneless.png",
+    popular: false,
+    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+  },
 
-  // --- SECCIÓN BOTANAS ---
+  // --- SECCIÓN BOTANAS (Todas incluyen papas) ---
   {
     id: "dedos-queso",
-    name: "Dedos de Queso",
+    name: "Dedos de Queso (5 pz)",
     category: "sides",
-    price: 65,
+    price: 80,
     badge: "Queso Fundido",
     aspectClass: "pin-aspect-portrait",
     description: "Queso fundido empanizado y doradito.",
-    includes: "5 piezas",
+    includes: "5 piezas • 🍟 Incluye porción de papas",
     image: "assets/images/dedos_queso.png",
     popular: true,
     isShareable: true
   },
   {
     id: "aros-cebolla",
-    name: "Aros de Cebolla",
+    name: "Aros de Cebolla (6 pz)",
     category: "sides",
-    price: 55,
+    price: 80,
     badge: "Crujientes",
     aspectClass: "pin-aspect-standard",
     description: "Cebolla empanizada, dorada y dulce.",
-    includes: "Recién hechos",
+    includes: "6 piezas • 🍟 Incluye porción de papas",
     image: "assets/images/aros_cebolla.png",
     popular: false,
-    isShareable: true
-  },
-  {
-    id: "papas-fritas",
-    name: "Papas",
-    category: "sides",
-    price: 50,
-    badge: "Clásicas",
-    aspectClass: "pin-aspect-tall",
-    description: "Papas doradas y sazonadas, recién hechas.",
-    includes: "Doradas y sazonadas",
-    image: "assets/images/fries_golden_crisp_1790710209462.jpg",
-    popular: true,
     isShareable: true
   }
 ];
@@ -260,8 +238,8 @@ const STORE_CONFIG = {
   name: "EL FLACO TUX",
   tagline: "Alitas, Boneless & Botanas - Root de tu antojo",
   specialties: "Alitas • Boneless • Botanas",
-  phone: "+52 921 303 3313",
-  whatsappNumber: "529213033313",
+  phone: "+52 56 3831 6644",
+  whatsappNumber: "5215638316644",
   currency: "$",
   location: "Nanchital de Lázaro Cárdenas del Río, Veracruz",
   deliveryZoneText: "Nanchital y zonas conurbadas",
@@ -303,9 +281,9 @@ function quickAddToCart(productId) {
   const product = MENU_DATA.find(p => p.id === productId);
   if (!product) return { success: false, error: 'Product not found' };
 
-  // Hot dogs y boneless necesitan el modal de personalización
-  // (presentación con/sin papas en jochos, salsa obligatoria en boneless)
-  if (product.category === 'hotdogs' || product.category === 'boneless') {
+  // Boneless necesita el modal de personalización (salsa obligatoria).
+  // Los hot dogs ya incluyen papas por defecto y se agregan directo.
+  if (product.category === 'boneless') {
     return { success: false, needsCustomization: true };
   }
 
@@ -416,19 +394,18 @@ function updateCartUI() {
       const hasCustoms = (item.exclusions && item.exclusions.length > 0) || 
                           (item.extras && item.extras.length > 0) || 
                           item.note ||
-                          item.friesChoice ||
                           item.sauce;
 
       let customsHtml = '';
       if (hasCustoms) {
-        const sauceTxt = (item.sauce && !(item.note || '').includes('Salsa:'))
+        const hasSalsasInNote = /salsas?:\s*/i.test(item.note || '');
+        const sauceTxt = (item.sauce && !hasSalsasInNote)
           ? `<span style="color: var(--secondary); font-weight: 700;">🌶️ Salsa: ${item.sauce}</span>`
           : '';
-        const friesTxt = item.friesChoice ? `<span style="color: var(--secondary); font-weight: 700;">${item.friesChoice}</span>` : '';
         const exclusionsTxt = item.exclusions && item.exclusions.length > 0 ? `⛔ ${item.exclusions.join(', ')}` : '';
         const extrasTxt = item.extras && item.extras.length > 0 ? `✨ Extras: ${item.extras.map(e => e.label).join(', ')}` : '';
         const noteTxt = item.note ? `📝 ${item.note}` : '';
-        customsHtml = `<div class="cart-item-notes">${[sauceTxt, friesTxt, exclusionsTxt, extrasTxt, noteTxt].filter(Boolean).join('<br>')}</div>`;
+        customsHtml = `<div class="cart-item-notes">${[sauceTxt, exclusionsTxt, extrasTxt, noteTxt].filter(Boolean).join('<br>')}</div>`;
       }
 
       return `
@@ -706,7 +683,7 @@ function handleCheckoutSubmit(e) {
 
   cart.forEach(item => {
     message += `\n• *${item.quantity}x ${item.name}* (${STORE_CONFIG.currency}${item.totalPrice * item.quantity})\n`;
-    if (item.sauce && !(item.note || '').includes('Salsa:')) {
+    if (item.sauce && !/salsas?:\s*/i.test(item.note || '')) {
       message += `   ↳ 🌶️ _Salsa: ${item.sauce}_\n`;
     }
     if (item.exclusions && item.exclusions.length > 0) {
@@ -1101,22 +1078,10 @@ function renderProductsInner() {
     const descHtml = hasSearch ? highlightMatches(product.description, queryTrimmed) : product.description;
     const includesHtml = product.includes ? (hasSearch ? highlightMatches(product.includes, queryTrimmed) : product.includes) : '';
 
-    const isHotDog = (product.category === 'hotdogs' && product.priceWithFries);
-    const addBtnLabel = isHotDog
-      ? 'Elegir Opción'
-      : (product.category === 'boneless' ? 'Elegir Salsa' : 'Añadir al Carrito');
-    const priceDisplayHtml = isHotDog ? `
-      <div class="hotdog-price-dual">
-        <div class="price-dual-row">
-          <span class="price-dual-val">${STORE_CONFIG.currency}${product.price}</span>
-          <span class="price-dual-tag">Sin papas</span>
-        </div>
-        <div class="price-dual-row highlight">
-          <span class="price-dual-val">${STORE_CONFIG.currency}${product.priceWithFries}</span>
-          <span class="price-dual-tag">Con papas 🍟</span>
-        </div>
-      </div>
-    ` : `
+    const addBtnLabel = product.category === 'boneless'
+      ? 'Elegir Salsa'
+      : 'Añadir al Carrito';
+    const priceDisplayHtml = `
       <div class="pin-price-wrap">
         <span class="pin-price-val">${STORE_CONFIG.currency}${product.price}</span>
         ${product.includes && product.category === 'burgers' ? '<span class="pin-fries-tag">🍟 Incluye Papas</span>' : ''}
@@ -1248,10 +1213,7 @@ function openCustomizeModal(productId) {
   currentProductToCustomize = product;
   modalProductTitle.textContent = `Personalizar: ${product.name}`;
 
-  const isHotDog = (product.category === 'hotdogs');
-  const displayBasePrice = isHotDog 
-    ? `Sin papas: ${STORE_CONFIG.currency}${product.priceWithoutFries || product.price} / Con papas: ${STORE_CONFIG.currency}${product.priceWithFries}`
-    : `${STORE_CONFIG.currency}${product.price}`;
+  const displayBasePrice = `${STORE_CONFIG.currency}${product.price}`;
 
   customizeProductDetails.innerHTML = `
     <div style="display: flex; gap: 14px; align-items: center; background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
@@ -1261,52 +1223,23 @@ function openCustomizeModal(productId) {
     </div>
   `;
 
-  const hotdogFriesGroup = document.getElementById('hotdog-fries-selection-group');
-  const hotdogFriesContainer = document.getElementById('hotdog-fries-options-container');
-
-  if (hotdogFriesGroup && hotdogFriesContainer) {
-    if (isHotDog && product.priceWithFries) {
-      hotdogFriesGroup.style.display = 'block';
-      hotdogFriesContainer.innerHTML = `
-        <label class="fries-choice-card" id="card-choice-no">
-          <input type="radio" name="hotdog-fries-option" value="no" class="hotdog-fries-radio">
-          <div class="fries-choice-info">
-            <span class="fries-choice-label">Sin papas</span>
-            <span class="fries-choice-price">${STORE_CONFIG.currency}${product.priceWithoutFries || product.price}</span>
-          </div>
-        </label>
-        <label class="fries-choice-card active" id="card-choice-yes">
-          <input type="radio" name="hotdog-fries-option" value="yes" checked class="hotdog-fries-radio">
-          <div class="fries-choice-info">
-            <span class="fries-choice-label">🍟 Con papas fritas</span>
-            <span class="fries-choice-price">${STORE_CONFIG.currency}${product.priceWithFries}</span>
-          </div>
-        </label>
-      `;
-      hotdogFriesContainer.querySelectorAll('.hotdog-fries-radio').forEach(r => {
-        r.addEventListener('change', () => {
-          hotdogFriesContainer.querySelectorAll('.fries-choice-card').forEach(c => c.classList.remove('active'));
-          r.closest('.fries-choice-card').classList.add('active');
-          recalculateModalPrice();
-        });
-      });
-    } else {
-      hotdogFriesGroup.style.display = 'none';
-      hotdogFriesContainer.innerHTML = '';
-    }
-  }
-
   renderSauceOptions(product);
 
   const exclusionsGroup = document.getElementById('exclusions-selection-group');
   const extrasGroup = document.getElementById('extras-selection-group');
+  const customNoteGroup = customItemNoteInput ? customItemNoteInput.closest('.form-group') : null;
   const hasExclusionsAndExtras = (product.category === 'burgers' || product.category === 'hotdogs');
+  const isBoneless = product.category === 'boneless';
 
   if (exclusionsGroup) {
     exclusionsGroup.style.display = hasExclusionsAndExtras ? 'block' : 'none';
   }
   if (extrasGroup) {
     extrasGroup.style.display = hasExclusionsAndExtras ? 'block' : 'none';
+  }
+  if (customNoteGroup) {
+    // Boneless: el modal solo muestra la selección de salsa (obligatoria).
+    customNoteGroup.style.display = isBoneless ? 'none' : 'block';
   }
 
   exclusionsOptionsContainer.innerHTML = hasExclusionsAndExtras ? CUSTOM_OPTIONS.exclusions.map(ex => `
@@ -1378,15 +1311,26 @@ function renderSauceOptions(product) {
   saucesSelectionGroup.style.display = 'block';
   saucesOptionsContainer.innerHTML = sauces.map((sauce, idx) => `
     <label class="sauce-choice-card">
-      <input type="radio" name="sauce-option" value="${sauce}" id="sauce-option-${idx}" class="sauce-radio">
+      <input type="checkbox" name="sauce-option" value="${sauce}" id="sauce-option-${idx}" class="sauce-checkbox">
       <span class="sauce-choice-label">${sauce}</span>
     </label>
   `).join('');
 
-  saucesOptionsContainer.querySelectorAll('.sauce-radio').forEach(radio => {
-    radio.addEventListener('change', () => {
-      saucesOptionsContainer.querySelectorAll('.sauce-choice-card').forEach(card => card.classList.remove('active'));
-      radio.closest('.sauce-choice-card')?.classList.add('active');
+  const sauceCheckboxes = Array.from(saucesOptionsContainer.querySelectorAll('.sauce-checkbox'));
+  sauceCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const checkedSauces = sauceCheckboxes.filter(cb => cb.checked);
+
+      // Máximo 2 salsas: se desmarca la tercera y se avisa al cliente.
+      if (checkedSauces.length > 2) {
+        checkbox.checked = false;
+        checkbox.closest('.sauce-choice-card')?.classList.remove('active');
+        clearSauceError();
+        showToast('> ERROR: Máximo 2 salsas por orden.');
+        return;
+      }
+
+      checkbox.closest('.sauce-choice-card')?.classList.toggle('active', checkbox.checked);
       clearSauceError();
     });
   });
@@ -1395,12 +1339,6 @@ function renderSauceOptions(product) {
 function recalculateModalPrice() {
   if (!currentProductToCustomize) return;
   let base = currentProductToCustomize.price;
-  if (currentProductToCustomize.category === 'hotdogs') {
-    const withFries = customizeModalBackdrop.querySelector('input[name="hotdog-fries-option"]:checked')?.value === 'yes';
-    base = withFries 
-      ? (currentProductToCustomize.priceWithFries || currentProductToCustomize.price) 
-      : (currentProductToCustomize.priceWithoutFries || currentProductToCustomize.price);
-  }
   const checkedExtras = customizeModalBackdrop.querySelectorAll('.custom-extra-chk:checked');
   checkedExtras.forEach(chk => {
     base += parseFloat(chk.getAttribute('data-price') || 0);
@@ -1411,13 +1349,16 @@ function recalculateModalPrice() {
 function handleConfirmCustomize() {
   if (!currentProductToCustomize) return;
 
-  // Boneless: la salsa es obligatoria
-  let sauceLabel = null;
+  // Boneless: se permiten de 1 a 2 salsas (al menos una es obligatoria)
+  let selectedSauces = [];
   const isBoneless = currentProductToCustomize.category === 'boneless' || (Array.isArray(currentProductToCustomize.sauces) && currentProductToCustomize.sauces.length > 0);
   if (isBoneless) {
-    const chosenSauce = customizeModalBackdrop.querySelector('input[name="sauce-option"]:checked');
-    if (!chosenSauce) {
-      showToast('> ERROR 404: Falta la salsa. Selecciona una para continuar.');
+    selectedSauces = Array.from(
+      customizeModalBackdrop.querySelectorAll('input[name="sauce-option"]:checked')
+    ).map(cb => cb.value);
+
+    if (selectedSauces.length === 0) {
+      showToast('> ERROR 404: Falta la salsa. Selecciona al menos una.');
       if (saucesSelectionGroup) {
         saucesSelectionGroup.classList.remove('sauces-invalid');
         void saucesSelectionGroup.offsetWidth;   // reinicia la animación de sacudida
@@ -1426,7 +1367,7 @@ function handleConfirmCustomize() {
       }
       if (saucesErrorHint) {
         saucesErrorHint.hidden = false;
-        saucesErrorHint.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Falta la salsa. Selecciona una para continuar.';
+        saucesErrorHint.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> &gt; ERROR 404: Falta la salsa. Selecciona al menos una.';
       }
       if (saucesOptionsContainer) {
         saucesOptionsContainer.setAttribute('aria-invalid', 'true');
@@ -1434,27 +1375,21 @@ function handleConfirmCustomize() {
       }
       return;
     }
-    sauceLabel = chosenSauce.value;
+
+    // Protección adicional por si el estado del DOM cambiara fuera del listener.
+    if (selectedSauces.length > 2) {
+      showToast('> ERROR: Máximo 2 salsas por orden.');
+      return;
+    }
   }
 
-  let basePrice = currentProductToCustomize.price;
-  let itemDisplayName = currentProductToCustomize.name;
-  let friesOptionLabel = null;
+  const basePrice = currentProductToCustomize.price;
+  const itemDisplayName = currentProductToCustomize.name;
   const noteParts = [];
 
-  if (currentProductToCustomize.category === 'hotdogs') {
-    const withFries = customizeModalBackdrop.querySelector('input[name="hotdog-fries-option"]:checked')?.value === 'yes';
-    basePrice = withFries 
-      ? (currentProductToCustomize.priceWithFries || currentProductToCustomize.price) 
-      : (currentProductToCustomize.priceWithoutFries || currentProductToCustomize.price);
-    itemDisplayName = `${currentProductToCustomize.name} ${withFries ? '(Con Papas 🍟)' : '(Sin Papas)'}`;
-    friesOptionLabel = withFries ? '🍟 Combo con papas fritas' : 'Sin papas';
-  }
-
-  if (sauceLabel) {
-    // La salsa no va en el nombre para no duplicarla: se guarda en las notas
-    // del carrito como "Salsa: Mango Habanero".
-    noteParts.push(`Salsa: ${sauceLabel}`);
+  if (selectedSauces.length > 0) {
+    // Las salsas se guardan en las notas del carrito como "Salsas: BBQ, Búfalo".
+    noteParts.push(`Salsas: ${selectedSauces.join(', ')}`);
   }
 
   const exclusions = Array.from(customizeModalBackdrop.querySelectorAll('.custom-exclusion-chk:checked')).map(c => c.value);
@@ -1480,8 +1415,7 @@ function handleConfirmCustomize() {
     exclusions: exclusions,
     extras: extras,
     note: note,
-    friesChoice: friesOptionLabel,
-    sauce: sauceLabel
+    sauce: selectedSauces.length > 0 ? selectedSauces.join(', ') : null
   }];
   setCart(updatedCart);
   updateCartUI();
@@ -1523,18 +1457,16 @@ function openProductInLightbox(productId) {
     if (lightboxDesc) lightboxDesc.textContent = product.description;
     
     let priceText = `${STORE_CONFIG.currency}${product.price} MXN`;
-    if (product.category === 'hotdogs' && product.priceWithFries) {
-      priceText = `Sin papas: ${STORE_CONFIG.currency}${product.price} / Con papas: ${STORE_CONFIG.currency}${product.priceWithFries} 🍟`;
-    } else if (product.includes) {
+    if (product.includes) {
       priceText = `${STORE_CONFIG.currency}${product.price} MXN (${product.includes})`;
     }
     if (lightboxPrice) lightboxPrice.textContent = priceText;
     if (lightboxCategory) lightboxCategory.textContent = getCategoryLabel(product.category);
 
     if (lightboxOrderBtn) {
-      const orderLabel = product.category === 'hotdogs'
-        ? 'Elegir Presentación y Ordenar'
-        : (product.category === 'boneless' ? 'Elegir Salsa y Ordenar' : 'Añadir al Carrito');
+      const orderLabel = product.category === 'boneless'
+        ? 'Elegir Salsa y Ordenar'
+        : 'Añadir al Carrito';
       lightboxOrderBtn.innerHTML = '<i class="fa-solid fa-cart-plus"></i> ' + orderLabel;
       lightboxOrderBtn.onclick = () => {
         closeLightbox();
@@ -1743,13 +1675,10 @@ function setupEventListeners() {
     });
   });
 
-  // Banner de promoción: filtra Boneless y lleva al tablero
-  const promoApplyBtn = document.getElementById('promo-apply-btn');
-  if (promoApplyBtn) {
-    promoApplyBtn.addEventListener('click', () => {
-      clearSearch();
-      selectCategory('boneless');
-      showToast('✓ Promo Boneless 2x1 disponible los Martes');
+  // Banner de promoción: lleva directo al menú
+  const promoMenuBtn = document.getElementById('promo-menu-btn');
+  if (promoMenuBtn) {
+    promoMenuBtn.addEventListener('click', () => {
       document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }

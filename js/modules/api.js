@@ -92,7 +92,7 @@ export function handleCheckoutSubmit(e) {
 
   cart.forEach(item => {
     message += `\n• *${item.quantity}x ${item.name}* (${STORE_CONFIG.currency}${item.totalPrice * item.quantity})\n`;
-    if (item.sauce && !(item.note || '').includes('Salsa:')) {
+    if (item.sauce && !/salsas?:\s*/i.test(item.note || '')) {
       message += `   ↳ 🌶️ _Salsa: ${item.sauce}_\n`;
     }
     if (item.exclusions && item.exclusions.length > 0) {
