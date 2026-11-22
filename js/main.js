@@ -138,6 +138,7 @@ function getCategoryLabel(catId) {
     case 'burgers': return 'Hamburguesas';
     case 'hotdogs': return 'Hot Dogs Jumbos';
     case 'boneless': return 'Boneless';
+    case 'combos': return 'Combos';
     case 'sides': return 'Botanas';
     default: return 'Todo el Menú';
   }
@@ -161,6 +162,8 @@ function matchProductWithQuery(product, query) {
     categorySynonyms = 'hotdog hotdogs jocho jochos jumbo perro perros salchicha hot dog pan';
   } else if (product.category === 'boneless') {
     categorySynonyms = 'boneless bono sin hueso pollo piezas salsa bbq bufalo mango habanero lemon pepper parmesano';
+  } else if (product.category === 'combos') {
+    categorySynonyms = 'combo combos sudo ping kernel cluster paquete promocion ahorro compartir';
   } else if (product.category === 'sides') {
     categorySynonyms = 'botanas papas fritas francesas aros cebolla dedos queso compartir acompanamiento';
   }

@@ -26,6 +26,7 @@ const CATEGORY_VISIBILITY = {
   burgers: true,
   hotdogs: true,
   boneless: true,
+  combos: true,
   sides: true
 };
 
@@ -180,6 +181,62 @@ const ALL_MENU_DATA = [
     includes: "25 piezas • 🍟 Incluye porción de papas",
     image: "assets/images/boneless.png",
     popular: false,
+    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+  },
+
+  // --- SECCIÓN COMBOS (todos SIN papas) ---
+  {
+    id: "combo-sudo",
+    name: "Combo SUDO",
+    category: "combos",
+    price: 160,
+    badge: "Ahorra $20",
+    aspectClass: "pin-aspect-standard",
+    description: "Burger sencilla + 5 pz boneless. El que lo puede todo. Elige tu salsa favorita.",
+    includes: "Sin papas • Combo TUX",
+    image: "assets/images/burger_combo.jpg",
+    popular: true,
+    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+  },
+  {
+    id: "combo-ping",
+    name: "Combo PING",
+    category: "combos",
+    price: 109,
+    badge: "Ahorra $21",
+    aspectClass: "pin-aspect-portrait",
+    description: "Jumbo sencillo + 5 pz boneless. Rápido y sin vueltas. Elige tu salsa favorita.",
+    includes: "Sin papas • Combo TUX",
+    image: "assets/images/hotdog_loaded.jpg",
+    popular: false,
+    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+  },
+  {
+    id: "combo-kernel",
+    name: "Combo KERNEL",
+    category: "combos",
+    price: 269,
+    badge: "Ahorra $41",
+    aspectClass: "pin-aspect-tall",
+    description: "12 pz boneless + dedos de queso + aros de cebolla. El núcleo para compartir. Elige tu salsa favorita.",
+    includes: "Sin papas • Combo TUX",
+    image: "assets/images/boneless.png",
+    popular: false,
+    isShareable: true,
+    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+  },
+  {
+    id: "combo-cluster",
+    name: "Combo CLUSTER",
+    category: "combos",
+    price: 499,
+    badge: "Ahorra $61",
+    aspectClass: "pin-aspect-standard",
+    description: "25 pz boneless + 2 burgers sencillas + aros de cebolla. Para toda la banda. Elige tu salsa favorita.",
+    includes: "Sin papas • Combo TUX",
+    image: "assets/images/burger_combo.jpg",
+    popular: false,
+    isShareable: true,
     sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
   },
 
@@ -869,6 +926,7 @@ function getCategoryLabel(catId) {
     case 'burgers': return 'Hamburguesas';
     case 'hotdogs': return 'Hot Dogs Jumbos';
     case 'boneless': return 'Boneless';
+    case 'combos': return 'Combos';
     case 'sides': return 'Botanas';
     default: return 'Todo el Menú';
   }
@@ -892,6 +950,8 @@ function matchProductWithQuery(product, query) {
     categorySynonyms = 'hotdog hotdogs jocho jochos jumbo perro perros salchicha hot dog pan';
   } else if (product.category === 'boneless') {
     categorySynonyms = 'boneless bono sin hueso pollo piezas salsa bbq bufalo mango habanero lemon pepper parmesano';
+  } else if (product.category === 'combos') {
+    categorySynonyms = 'combo combos sudo ping kernel cluster paquete promocion ahorro compartir';
   } else if (product.category === 'sides') {
     categorySynonyms = 'botanas papas fritas francesas aros cebolla dedos queso compartir acompanamiento';
   }
