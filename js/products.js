@@ -297,7 +297,7 @@ export const STORE_CONFIG = {
   hours: {
     openHour: 18, // 6:00 PM
     closeHour: 24, // 12:00 AM
-    closedDays: [1], // Lunes = 1
-    scheduleText: "Mar a Dom: 6:00 PM - 12:00 AM • Lunes: Cerrado"
+    closedDays: [1, 2, 3], // Lunes = 1, Martes = 2, Miércoles = 3
+    scheduleText: "Jue a Dom: 6:00 PM - 12:00 AM • Lun a Mié: Cerrado"
   }
 };
