@@ -30,8 +30,9 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 
 // Categorías del tablero: las apagadas en CATEGORY_VISIBILITY se ocultan solas
 const CATEGORY_META = [
+  { id: 'combos', icon: 'fa-terminal', label: 'Combos' },
   { id: 'burgers', icon: 'fa-burger', label: 'Hamburguesas' },
-  { id: 'hotdogs', icon: 'fa-hotdog', label: 'Jochos Jumbos' },
+  { id: 'hotdogs', icon: 'fa-hotdog', label: 'Hot Dogs' },
   { id: 'boneless', icon: 'fa-drumstick-bite', label: 'Boneless' },
   { id: 'sides', icon: 'fa-bowl-food', label: 'Botanas' }
 ];
@@ -135,8 +136,9 @@ function escapeHtml(str) {
 
 function getCategoryLabel(catId) {
   switch (catId) {
+    case 'combos': return 'Combos';
     case 'burgers': return 'Hamburguesas';
-    case 'hotdogs': return 'Hot Dogs Jumbos';
+    case 'hotdogs': return 'Hot Dogs';
     case 'boneless': return 'Boneless';
     case 'combos': return 'Combos';
     case 'sides': return 'Botanas';
@@ -156,16 +158,16 @@ function matchProductWithQuery(product, query) {
   const prodCategory = normalizeSearchText(product.category || '');
 
   let categorySynonyms = '';
-  if (product.category === 'burgers') {
-    categorySynonyms = 'hamburguesa hamburguesas burger burgers carne res plancha';
+  if (product.category === 'combos') {
+    categorySynonyms = 'combo combos promo promocion paquete el flaco smash boneless dedos queso';
+  } else if (product.category === 'burgers') {
+    categorySynonyms = 'smash burger burgers hamburguesa hamburguesas carne res plancha';
   } else if (product.category === 'hotdogs') {
     categorySynonyms = 'hotdog hotdogs jocho jochos jumbo perro perros salchicha hot dog pan';
   } else if (product.category === 'boneless') {
-    categorySynonyms = 'boneless bono sin hueso pollo piezas salsa bbq bufalo mango habanero lemon pepper parmesano';
-  } else if (product.category === 'combos') {
-    categorySynonyms = 'combo combos sudo ping kernel cluster paquete promocion ahorro compartir';
+    categorySynonyms = 'boneless bono sin hueso pollo piezas salsa bbq mango habanero parmesano';
   } else if (product.category === 'sides') {
-    categorySynonyms = 'botanas papas fritas francesas aros cebolla dedos queso compartir acompanamiento';
+    categorySynonyms = 'botanas papas gajo fritas francesas aros cebolla dedos queso compartir acompanamiento';
   }
 
   const searchableBlob = `${prodName} ${prodDesc} ${prodIncludes} ${prodBadge} ${prodCategory} ${categorySynonyms}`;
@@ -361,7 +363,7 @@ function renderProductsInner() {
     `;
 
     const badgeText = product.badge ? product.badge.replace(/^[^a-zA-ZáéíóúÁÉÍÓÚñÑ]+/, '').trim() : '';
-    const badgeHtml = badgeText ? `<span class="pin-badge product-badge">&lt;${badgeText} /&gt;</span>` : '';
+    const badgeHtml = badgeText ? `<span class="pin-badge product-badge">&lt;${badgeText.toUpperCase()} /&gt;</span>` : '';
 
     card.innerHTML = `
       <div class="pin-media-wrap product-img-wrap gallery-photo-trigger" data-id="${product.id}" role="button" tabindex="0" title="Toca para ver ${product.name} en el tablero">
@@ -413,7 +415,7 @@ function renderProductsInner() {
               <i class="fa-solid fa-sliders"></i>
             </button>
             <button type="button" class="pin-mobile-add-btn btn-add-cart-action" data-id="${product.id}">
-              <i class="fa-solid fa-plus"></i> ${addBtnLabel}
+              <i class="fa-solid fa-terminal"></i> ${addBtnLabel}
             </button>
           </div>
         </div>
@@ -564,7 +566,7 @@ function renderSauceOptions(product) {
   const sauces = isBoneless
     ? (Array.isArray(product.sauces) && product.sauces.length > 0
         ? product.sauces
-        : ['BBQ', 'Búfalo', 'Mango Habanero', 'Lemon Pepper', 'Parmesano'])
+        : ['BBQ', 'Mango Habanero', 'Parmesano'])
     : [];
 
   // El botón de confirmar siempre está disponible: la validación de salsa se
@@ -660,7 +662,7 @@ function handleConfirmCustomize() {
   const noteParts = [];
 
   if (selectedSauces.length > 0) {
-    // Las salsas se guardan en las notas del carrito como "Salsas: BBQ, Búfalo".
+    // Las salsas se guardan en las notas del carrito como "Salsas: BBQ, Mango Habanero".
     noteParts.push(`Salsas: ${selectedSauces.join(', ')}`);
   }
 
@@ -785,9 +787,10 @@ function checkStoreHours() {
   const now = new Date();
   const day = now.getDay();
   const hour = now.getHours();
-  const isMonday = (day === 1);
-  const isWithinHours = !isMonday && (hour >= 18 && hour < 24);
-  return { isOpen: isWithinHours, isMonday };
+  const { closedDays = [], openHour = 18, closeHour = 24 } = STORE_CONFIG.hours || {};
+  const isClosedDay = closedDays.includes(day);
+  const isWithinHours = !isClosedDay && hour >= openHour && hour < closeHour;
+  return { isOpen: isWithinHours, isClosedDay };
 }
 
 function updateStoreHoursUI() {

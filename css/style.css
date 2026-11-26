@@ -5,22 +5,22 @@
    ========================================================================== */
 
 :root, [data-theme="dark"] {
-  /* Colors - TERMINAL TUX HACKER (Awwwards dark level) */
-  --bg-main: #050505; /* Negro casi puro */
-  --bg-surface: #111111;
-  --bg-card: rgba(17, 17, 17, 0.70);
-  --bg-card-hover: rgba(26, 26, 26, 0.85);
-  --bg-glass: rgba(11, 11, 11, 0.94);
-  --header-scrolled-bg: rgba(5, 5, 5, 0.97);
+  /* Colors - MATRIX PURO */
+  --bg-main: #000000; /* Negro puro */
+  --bg-surface: #070F07;
+  --bg-card: rgba(10, 18, 10, 0.70);
+  --bg-card-hover: rgba(14, 28, 14, 0.85);
+  --bg-glass: rgba(0, 0, 0, 0.94);
+  --header-scrolled-bg: rgba(0, 0, 0, 0.97);
 
-  --primary: #E63946; /* Rojo Tux */
-  --primary-hover: #F04B57;
-  --primary-glow: rgba(230, 57, 70, 0.45);
-  --primary-gradient: linear-gradient(135deg, #E63946 0%, #B3202C 100%);
+  --primary: #008F11; /* Verde oscuro para botones */
+  --primary-hover: #00B316;
+  --primary-glow: rgba(0, 143, 17, 0.45);
+  --primary-gradient: linear-gradient(135deg, #008F11 0%, #005C0B 100%);
 
-  --secondary: #FFC300; /* Amarillo */
-  --secondary-hover: #E6B000;
-  --secondary-glow: rgba(255, 195, 0, 0.35);
+  --secondary: #00FF41; /* Verde Neón brillante para precios y hover */
+  --secondary-hover: #33FF66;
+  --secondary-glow: rgba(0, 255, 65, 0.35);
 
   --code-green: #00FF41; /* Verde Matrix */
   --code-green-dim: rgba(0, 255, 65, 0.12);
@@ -31,18 +31,18 @@
   --whatsapp-glow: rgba(37, 211, 102, 0.35);
 
   --text-main: #FFFFFF;
-  --text-muted: #8E8E93;
-  --text-dim: #636366;
+  --text-muted: #A0A0A0;
+  --text-dim: #666666;
 
   --border-light: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.18);
-  --border-accent: rgba(230, 57, 70, 0.50);
+  --border-accent: rgba(0, 255, 65, 0.45);
 
   /* Superficies auxiliares */
-  --surface-pill: #111111;
-  --surface-pill-hover: #1A1A1A;
-  --surface-inset: #0A0A0A;
-  --surface-footer: #030303;
+  --surface-pill: #0A0F0A;
+  --surface-pill-hover: #121D12;
+  --surface-inset: #050805;
+  --surface-footer: #000000;
 
   /* Fonts - Terminal Tux Hacker */
   --font-display: 'Space Grotesk', 'Anton', sans-serif;
@@ -54,8 +54,8 @@
   --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.80);
   --shadow-lg: 0 20px 44px rgba(0, 0, 0, 0.90);
   --shadow-pin: 0 14px 32px rgba(0, 0, 0, 0.75);
-  --shadow-glow: 0 0 30px -6px rgba(230, 57, 70, 0.55);
-  --shadow-glow-amber: 0 0 24px -4px rgba(255, 195, 0, 0.40);
+  --shadow-glow: 0 0 30px -6px rgba(0, 255, 65, 0.45);
+  --shadow-glow-amber: 0 0 24px -4px rgba(0, 255, 65, 0.40);
 
   /* Layout - ESQUINAS RECTAS (sin píldoras) */
   --radius-sm: 4px;
@@ -66,9 +66,9 @@
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Atmósfera */
-  --ambient-glow: radial-gradient(circle at 50% 0%, rgba(230, 57, 70, 0.16) 0%, rgba(0, 255, 65, 0.04) 40%, transparent 70%);
-  --scrollbar-track: #0A0A0A;
-  --scrollbar-thumb: #2A2A2A;
+  --ambient-glow: radial-gradient(circle at 50% 0%, rgba(0, 143, 17, 0.16) 0%, rgba(0, 255, 65, 0.05) 40%, transparent 70%);
+  --scrollbar-track: #050505;
+  --scrollbar-thumb: #1C2B1C;
 }
 
 [data-theme="light"] {
@@ -818,6 +818,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  mix-blend-mode: lighten;
 }
 
 @keyframes float {
@@ -1617,14 +1618,14 @@ mark.search-highlight {
 .pin-card,
 .product-card {
   break-inside: avoid;
-  margin-bottom: 24px;
-  background: rgba(17, 17, 17, 0.70);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-pin);
+  margin-bottom: 20px;
+  background: rgba(20, 20, 20, 0.6) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
   overflow: hidden;
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: none !important;
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, opacity 0.4s ease;
   position: relative;
   display: flex;
@@ -1643,9 +1644,9 @@ mark.search-highlight {
 .product-card:hover,
 .pin-card.is-visible:hover,
 .product-card.is-visible:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: rgba(230, 57, 70, 0.55);
-  box-shadow: 0 0 25px rgba(230, 57, 70, 0.35), var(--shadow-pin), 0 16px 36px rgba(0, 0, 0, 0.6);
+  transform: translateY(-5px);
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.35) !important;
 }
 
 /* Pin Media Wrap */
@@ -1792,25 +1793,26 @@ mark.search-highlight {
   color: #E60023;
 }
 
-/* Badge on Pin — Etiqueta estilo código <Favorita /> */
+/* Badge on Pin — Etiqueta rectangular estilo terminal < FAVORITA /> */
 .pin-badge,
 .product-badge {
   position: absolute;
   top: 10px;
   left: 10px;
   background: rgba(5, 5, 5, 0.92);
-  border: 1px solid rgba(255, 195, 0, 0.50);
+  border: 1px solid rgba(0, 255, 65, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: var(--secondary);
-  padding: 3px 9px;
-  border-radius: 2px;
-  font-size: 0.72rem;
+  color: var(--code-green, #00FF41);
+  padding: 4px 9px;
+  border-radius: 3px;
+  font-size: 0.7rem;
   font-weight: 700;
   font-family: var(--font-mono);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   z-index: 2;
-  box-shadow: 0 0 12px rgba(255, 195, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: none;
 }
 
 /* Pin Metadata section below image */
@@ -1832,9 +1834,12 @@ mark.search-highlight {
 
 .pin-title,
 .product-title {
-  font-size: 1.05rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.1rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   line-height: 1.25;
   margin: 0;
 }
@@ -1842,7 +1847,7 @@ mark.search-highlight {
 .pin-desc,
 .product-desc {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: #A0A0A0 !important;
   line-height: 1.4;
   margin: 0;
   display: -webkit-box;
@@ -1907,9 +1912,9 @@ mark.search-highlight {
 .pin-price-val {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--secondary);
+  color: #FFC300;
   font-family: var(--font-mono);
-  text-shadow: 0 0 15px var(--secondary);
+  text-shadow: 0 0 12px rgba(255, 195, 0, 0.5);
 }
 
 .pin-fries-tag {
@@ -1978,22 +1983,31 @@ mark.search-highlight {
 }
 
 .pin-mobile-add-btn {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
   background: var(--primary);
   color: #ffffff;
   border: none;
-  border-radius: var(--radius-full);
-  padding: 6px 12px;
-  font-size: 0.78rem;
-  font-weight: 700;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: background 0.2s ease, filter 0.2s ease;
 }
 
 @media (max-width: 768px) {
   .pin-mobile-add-btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 8px;
   }
 }
 
@@ -5996,20 +6010,22 @@ body::before {
   color: #ffffff;
 }
 
-/* ---------- 5. Tarjetas de producto / pines (Stitch) ---------- */
+/* ---------- 5. Tarjetas de producto / pines (Cyber-Diner Glassmorphism) ---------- */
 .pin-card,
 .product-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-pin);
-  box-shadow: var(--shadow-pin);
+  background: rgba(20, 20, 20, 0.6) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
   transition: var(--transition);
 }
 
 .pin-card:hover,
 .product-card:hover {
-  border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.35) !important;
   transform: translateY(-4px);
 }
 
@@ -6018,25 +6034,26 @@ body::before {
 
 .pin-badge,
 .product-badge {
-  background: color-mix(in srgb, #000000 80%, transparent);
-  color: var(--secondary);
-  border: 1px solid color-mix(in srgb, var(--secondary) 50%, transparent);
-  border-radius: var(--radius-full);
-  font-weight: 900;
+  background: rgba(5, 5, 5, 0.92);
+  color: var(--code-green, #00FF41);
+  border: 1px solid rgba(0, 255, 65, 0.45);
+  border-radius: 3px;
+  font-weight: 700;
+  font-family: var(--font-mono);
   backdrop-filter: blur(6px);
 }
 
 .pin-title,
-.product-title { color: var(--text-main); font-weight: 800; }
+.product-title { color: #FFFFFF; font-weight: 800; }
 
 .pin-desc,
-.product-desc { color: var(--text-muted); }
+.product-desc { color: #A0A0A0 !important; }
 
-/* Precio en ámbar dorado */
+/* Precio en amarillo brillante para contrastar con el verde Matrix */
 .pin-price-val,
 .price-dual-val,
 .hotdog-price-dual .price-dual-val {
-  color: var(--secondary);
+  color: #FFC300;
   font-weight: 900;
 }
 
@@ -6361,35 +6378,33 @@ body::before {
    10. BOTÓN FLOTANTE DE WHATSAPP
    ========================================================================== */
 #whatsapp-float-btn {
-  position: fixed;
-  /* 90px = alto de la barra flotante del carrito (~70px) + 20px de margen.
-     La barra es full-width en TODOS los anchos (no solo móvil), así que el
-     botón debe quedar por encima también en escritorio: con bottom:20px
-     tapaba el botón "CONFIRMAR AHORA" entre 769px y 1280px. */
-  bottom: 90px;
-  right: 20px;
-  z-index: 100;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #14532D;
-  color: #ffffff;
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 15px !important;
+  z-index: 9999 !important;
+  width: 58px;
+  height: 58px;
+  border-radius: 50% !important;
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+  border: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.85rem;
   line-height: 1;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 195, 0, 0.22);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 14px rgba(37, 211, 102, 0.45);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.25s ease,
               background-color 0.25s ease;
 }
 
 #whatsapp-float-btn:hover {
-  transform: scale(1.1);
-  background: #1B6B3A;
-  box-shadow: 0 6px 20px rgba(20, 83, 45, 0.6), 0 0 0 1px rgba(255, 195, 0, 0.35);
+  transform: scale(1.08);
+  background: #1EBE57 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
 }
 
 #whatsapp-float-btn:active {
@@ -6404,19 +6419,25 @@ body::before {
 /* En móvil el botón debe quedar por encima de la barra flotante del carrito */
 @media (max-width: 768px) {
   #whatsapp-float-btn {
-    bottom: 90px;
-    right: 20px;
+    position: fixed !important;
+    bottom: 90px !important;
+    right: 15px !important;
+    z-index: 9999 !important;
+    border-radius: 50% !important;
+    background: #25D366 !important;
+    color: #FFFFFF !important;
   }
 }
 
-/* Pantallas muy estrechas (≤380px): la barra del carrito pasa a dos filas y
-   mide ~82px, así que el botón de WhatsApp sube a 102px (82 + 20px de margen).
-   Además el padding del body en ≤768px (100px) ya cubre esos 82px.
-   (Debe ir después del bloque de 768px para ganar por orden de cascada.) */
 @media (max-width: 380px) {
   #whatsapp-float-btn {
-    bottom: 102px;
-    right: 20px;
+    position: fixed !important;
+    bottom: 90px !important;
+    right: 15px !important;
+    z-index: 9999 !important;
+    border-radius: 50% !important;
+    background: #25D366 !important;
+    color: #FFFFFF !important;
   }
 }
 
@@ -6535,7 +6556,6 @@ body::before {
 .step-node,
 .feature-icon,
 .search-keyboard-hint kbd,
-#whatsapp-float-btn,
 .pin-detail-lightbox .lightbox-dialog,
 *::-webkit-scrollbar-thumb {
   border-radius: var(--radius-sm);
@@ -6702,34 +6722,36 @@ body::before {
   box-shadow: none;
 }
 
-/* ---------- 14.2 Tarjetas de producto ---------- */
-/* Sin sombras suaves: borde de 1px sobre fondo plano */
+/* ---------- 14.2 Tarjetas de producto (Glassmorphism Limpio) ---------- */
 .pin-card,
 .product-card {
-  background: #151515;
-  border: 1px solid #333333;
-  box-shadow: none;
+  background: rgba(20, 20, 20, 0.6) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
 }
 
 .pin-card:hover,
 .product-card:hover {
-  border-color: #E63946;
-  box-shadow: none;
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.35) !important;
 }
 
-/* En modo claro una tarjeta #151515 dejaría el texto oscuro ilegible:
+/* En modo claro una tarjeta oscura dejaría el texto oscuro ilegible:
    se mantiene la tarjeta clara con un borde equivalente */
 [data-theme="light"] .pin-card,
 [data-theme="light"] .product-card {
-  background: var(--bg-surface);
-  border-color: #E0E0E0;
+  background: var(--bg-surface) !important;
+  border-color: #E0E0E0 !important;
 }
 [data-theme="light"] .pin-card:hover,
 [data-theme="light"] .product-card:hover {
-  border-color: #E63946;
+  border-color: #E63946 !important;
 }
 
-/* Las imágenes ya son width:100% + object-fit:cover (líneas 1485-1491);
+/* Las imágenes ya son width:100% + object-fit:cover;
    este degradado funde la parte inferior con el fondo de la tarjeta para que
    el texto blanco resalte. */
 .pin-media-wrap::after,
@@ -6741,9 +6763,9 @@ body::before {
   bottom: 0;
   height: 55%;
   background: linear-gradient(to top,
-      #151515 0%,
-      rgba(21, 21, 21, 0.78) 35%,
-      rgba(21, 21, 21, 0) 100%);
+      rgba(10, 10, 10, 0.92) 0%,
+      rgba(10, 10, 10, 0.55) 45%,
+      rgba(10, 10, 10, 0) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -6756,47 +6778,31 @@ body::before {
       rgba(255, 255, 255, 0) 100%);
 }
 
-/* ---------- 14.3 Etiqueta pegatina (.badge-sticker) ---------- */
-/* Círculo rojo, texto blanco en negrita y ligeramente rotado.
-   Reutilizable en cualquier parte; en las tarjetas convive con .pin-badge,
-   cuyo fondo/borde hay que sobreescribir (y también su override de modo claro). */
-.badge-sticker {
+/* ---------- 14.3 Etiqueta rectangular estilo terminal (.terminal-tag) ---------- */
+.hero-terminal-tags {
+  position: static;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  width: 92px;
-  height: 92px;
-  padding: 10px;
-  border-radius: 50%;
-  background: #E63946;
-  color: #FFFFFF;
-  border: none;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 0.58rem;
-  line-height: 1.1;
-  letter-spacing: 0.04em;
-  text-align: center;
-  text-transform: uppercase;
-  transform: rotate(-10deg);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
-.pin-badge.badge-sticker,
-.product-badge.badge-sticker {
-  top: 10px;
-  left: 10px;
-  z-index: 3;
-  background: #E63946;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 50%;
-  backdrop-filter: none;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 0.58rem;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
+.terminal-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: rgba(0, 143, 17, 0.14);
+  color: var(--code-green, #00FF41);
+  border: 1px solid rgba(0, 255, 65, 0.45);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -6884,18 +6890,18 @@ body::before {
 }
 
 .btn-smash-primary {
-  background: #E63946;
-  border: 2px solid #E63946;
+  background: var(--primary);
+  border: 2px solid var(--primary);
   color: #FFFFFF;
-  box-shadow: 0 0 15px var(--secondary), 0 0 25px rgba(230, 57, 70, 0.45);
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.25), 0 0 22px rgba(0, 143, 17, 0.45);
 }
 
 .btn-smash-primary:hover {
-  background: #F04B57;
-  border-color: #F04B57;
+  background: var(--primary-hover);
+  border-color: var(--secondary);
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 0 25px var(--secondary), 0 0 35px rgba(230, 57, 70, 0.65);
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.45);
 }
 
 .btn-smash-outline {
@@ -6948,41 +6954,7 @@ body::before {
   z-index: 0;
 }
 
-/* ---------- Pegatinas decorativas alrededor de la imagen ---------- */
-.hero-sticker {
-  position: absolute;
-  z-index: 4;
-  width: 116px;
-  height: 116px;
-  font-size: 0.74rem;
-  pointer-events: none;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 12px;
-  border-radius: 50%;
-  background: #E63946;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
-}
-
-.hero-sticker-1 {
-  top: -22px;
-  left: -22px;
-  transform: rotate(-15deg);
-}
-
-.hero-sticker-2 {
-  bottom: 34px;
-  right: -26px;
-  transform: rotate(-15deg);
-}
+/* Etiquetas de terminal en Hero: esquina superior izquierda */
 
 /* ---------- Pie de la imagen ---------- */
 .hero-stage-caption {
@@ -6996,7 +6968,7 @@ body::before {
   gap: 2px;
   padding: 14px 18px;
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.92) 100%);
-  border-left: 3px solid #E63946;
+  border-left: 3px solid var(--primary);
   border-radius: 0 4px 4px 0;
   backdrop-filter: blur(6px);
   pointer-events: none;
@@ -7007,7 +6979,7 @@ body::before {
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #FFC300;
+  color: var(--secondary);
 }
 
 .hero-stage-name {
@@ -7021,10 +6993,11 @@ body::before {
 }
 
 .hero-stage-price {
-  font-family: var(--font-display);
-  font-weight: 400;
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 1.45rem;
   color: #FFC300;
+  text-shadow: 0 0 12px rgba(255, 195, 0, 0.5);
 }
 
 /* ---------- Responsive ---------- */
@@ -7037,64 +7010,85 @@ body::before {
 @media (max-width: 900px) {
   .smash-hero .hero-grid {
     grid-template-columns: 1fr;
-    gap: 56px;
+    gap: 24px;
   }
   .hero-image-stage {
     min-height: 0;
-    padding: 18px;
+    padding: 14px;
   }
   .hero-burger-img {
-    height: 340px;
+    height: 300px;
   }
   .hero-stage-caption {
-    left: 18px;
-    right: 18px;
-    bottom: 18px;
-  }
-  /* En una columna la etapa ocupa todo el ancho: las pegatinas se meten
-     hacia dentro para no salirse del viewport */
-  .hero-sticker-1 {
-    top: -16px;
-    left: 6px;
-  }
-  .hero-sticker-2 {
-    bottom: 26px;
-    right: 6px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
   }
 }
 
 @media (max-width: 768px) {
   .smash-hero {
-    padding-top: 100px;
-    padding-bottom: 60px;
+    padding-top: 92px;
+    padding-bottom: 32px;
+    min-height: auto;
   }
-  /* clamp(4rem, ...) desbordaría en móvil: "HAMBURGUESAS" a 64px no cabe */
+  .smash-hero .hero-grid {
+    gap: 22px;
+  }
+  .smash-hero .terminal-window {
+    margin: 0 auto 14px;
+  }
   .smash-hero .hero-title {
-    font-size: clamp(2.4rem, 12vw, 4rem);
-    margin-bottom: 18px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #FFFFFF !important;
+    font-size: 2.5rem !important;
+    line-height: 1.06 !important;
+    text-align: center !important;
+    margin: 0 auto 12px !important;
+    overflow-wrap: break-word;
+  }
+  .hero-terminal-tags {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto 12px;
+  }
+  .terminal-tag {
+    font-size: 0.68rem;
+    padding: 4px 8px;
+  }
+  .smash-hero .hero-desc {
+    text-align: center;
+    margin: 0 auto 14px;
+    font-size: 0.92rem;
+  }
+  .smash-hero .pinterest-board-stats {
+    margin: 0 auto 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 10px;
+  }
+  .smash-hero .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
   }
   .hero-burger-img {
-    height: 280px;
-  }
-  .hero-sticker {
-    width: 90px;
-    height: 90px;
-    font-size: 0.6rem;
-    padding: 9px;
-  }
-  .hero-sticker-1 {
-    top: -14px;
-    left: -10px;
-  }
-  .hero-sticker-2 {
-    bottom: 24px;
-    right: -12px;
+    height: 250px;
   }
   .btn-smash-primary,
   .btn-smash-outline {
-    flex: 1 1 auto;
-    padding: 17px 22px;
-    font-size: 0.92rem;
+    flex: 0 1 auto;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    margin: 0;
   }
   .hero-stage-name {
     font-size: 1.05rem;
@@ -7115,10 +7109,12 @@ body::before {
 /* ---------- Barra sticky: buscador + filtros ---------- */
 .menu-toolbar {
   position: sticky;
-  top: 77px;                          /* alto del header (position: fixed) */
+  top: 70px;                          /* alto del header (position: fixed) */
   z-index: 60;
-  background: var(--bg-main);
-  border-bottom: 1px solid var(--border-light);
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   padding: 10px 0 6px;
   margin-bottom: 16px;
   transition: box-shadow 0.2s ease;
@@ -7219,11 +7215,12 @@ body::before {
 .pin-price-val,
 .price-dual-val,
 .hotdog-price-dual .price-dual-val {
-  color: var(--secondary);              /* dorado */
-  font-family: var(--font-display);     /* Anton */
-  font-weight: 900;                     /* Anton se dibuja en su peso nativo */
+  color: #FFC300;                       /* amarillo brillante contra el verde */
+  font-family: var(--font-mono);
+  font-weight: 800;
   line-height: 1;
   letter-spacing: 0.02em;
+  text-shadow: 0 0 12px rgba(255, 195, 0, 0.45);
 }
 
 .pin-price-val {
@@ -7268,27 +7265,20 @@ body::before {
   color: var(--secondary);
 }
 
-/* ---------- 19.3 Badges legibles sobre la foto ---------- */
-/* Fondo oscuro semitransparente + texto blanco + acento rojo.
-   :not(.badge-sticker) para no pisar la pegatina roja de los destacados. */
-.pin-badge:not(.badge-sticker),
-.product-badge:not(.badge-sticker) {
-  background: rgba(10, 10, 10, 0.82);
-  color: #FFFFFF;
-  border: 1px solid rgba(230, 57, 70, 0.85);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+/* ---------- 19.3 Badges legibles sobre la foto (estilo terminal) ---------- */
+.pin-badge,
+.product-badge {
+  background: rgba(5, 5, 5, 0.92);
+  color: var(--code-green, #00FF41);
+  border: 1px solid rgba(0, 255, 65, 0.45);
+  border-radius: 3px;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  font-weight: 900;
-  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
-}
-
-/* La pegatina roja mantiene su fondo; se le añade un anillo oscuro para
-   despegarse de las fotos claras */
-.badge-sticker {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(10, 10, 10, 0.45);
+  box-shadow: none;
 }
 
 /* ---------- 19.4 CTA "CONFIRMAR AHORA" ---------- */
@@ -7357,8 +7347,8 @@ body::before {
    barra del carrito abreviada.
    ========================================================================== */
 
-/* ---------- 20.1 Una sola columna por debajo de 600px (Experiencia QR) ---------- */
-@media (max-width: 600px) {
+/* ---------- 20.1 Una sola columna por debajo de 768px (Experiencia QR) ---------- */
+@media (max-width: 768px) {
   .products-grid,
   .pin-board-grid {
     column-count: 1;
@@ -7382,43 +7372,22 @@ body::before {
 
   .pin-card,
   .product-card {
-    margin-bottom: 24px;
-    border-radius: 4px;
+    margin-bottom: 20px;
+    border-radius: 12px !important;
   }
 }
 
-/* ---------- 20.2 Pegatinas de tarjeta más pequeñas ---------- */
-/* Solo las etiquetas de las tarjetas (.pin-badge.badge-sticker). Las del hero
-   (.hero-sticker) conservan su tamaño grande. */
-.pin-badge.badge-sticker,
-.product-badge.badge-sticker {
-  top: 8px;
-  left: 8px;
-  width: 60px;
-  height: 60px;
-  padding: 5px;
-  font-size: 0.6rem;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-/* ---------- 20.3 WhatsApp: abajo a la derecha, sobre la barra ---------- */
+/* ---------- 20.3 WhatsApp: círculo verde sólido abajo a la derecha ---------- */
 @media (max-width: 768px) {
   #whatsapp-float-btn {
-    bottom: 90px;
-    right: 15px;
-  }
-}
-
-@media (max-width: 380px) {
-  #whatsapp-float-btn {
-    bottom: 102px;
-    right: 15px;
+    position: fixed !important;
+    bottom: 90px !important;
+    right: 15px !important;
+    z-index: 9999 !important;
+    border-radius: 50% !important;
+    background: #25D366 !important;
+    color: #FFFFFF !important;
+    border: none !important;
   }
 }
 
@@ -7531,7 +7500,9 @@ body::before {
 
 @media (max-width: 768px) {
   .smash-hero .hero-title {
-    font-size: clamp(2.2rem, 9.5vw, 3.7rem);
+    font-size: 2.5rem !important;
+    line-height: 1.06 !important;
+    text-align: center !important;
   }
 }
 
@@ -7803,8 +7774,9 @@ body::before {
 .pin-mobile-add-btn {
   background: var(--primary);
   color: #FFFFFF;
-  border-radius: var(--radius-sm);
+  border-radius: 8px;
   font-weight: 900;
+  width: 100%;
 }
 
 .pin-mobile-add-btn:hover {
@@ -7816,6 +7788,7 @@ body::before {
     width: 100%;
     min-height: 54px;
     padding: 14px 18px;
+    border-radius: 8px;
     font-size: 0.95rem;
     letter-spacing: 0.03em;
   }

@@ -1,6 +1,6 @@
 /**
  * BASE DE DATOS DE PRODUCTOS - EL FLACO TUX
- * Alitas, Boneless & Botanas - Root de tu antojo
+ * Smash Burgers, Boneless & Papas - Root de tu antojo
  * Datos basados fielmente en el menú del negocio
  */
 
@@ -8,13 +8,9 @@
  * VISIBILIDAD TEMPORAL DEL MENÚ
  * ---------------------------------------------------------------
  * Pon en `false` la categoría que quieras ocultar del sitio.
- * Los platillos siguen guardados en este mismo archivo, así que al
- * volver a `true` reaparecen sin tocar diseño, carrito ni WhatsApp.
- *
- * Estado actual: menú completo con hamburguesas, hot dogs jumbos,
- * boneless y botanas.
  */
 export const CATEGORY_VISIBILITY = {
+  combos: true,
   burgers: true,
   hotdogs: true,
   boneless: true,
@@ -23,54 +19,57 @@ export const CATEGORY_VISIBILITY = {
 };
 
 const ALL_MENU_DATA = [
+  // --- SECCIÓN COMBOS (Producto Destacado) ---
+  {
+    id: "combo-flaco",
+    name: "Combo El Flaco (combo.sh)",
+    category: "combos",
+    price: 230,
+    badge: "Destacado",
+    aspectClass: "pin-aspect-tall",
+    description: "1 Smash Clásica + Boneless (5 pz) + Dedos de Queso (5 pz). Incluye papas.",
+    includes: "🍟 Incluye porción de papas",
+    image: "assets/images/burger_combo.jpg",
+    popular: true,
+    isShareable: true
+  },
+
   // --- SECCIÓN HAMBURGUESAS (Todas incluyen papas) ---
   {
-    id: "burger-sencilla",
-    name: "Hamburguesa Sencilla",
+    id: "smash-clasica",
+    name: "Smash Clásica",
     category: "burgers",
     price: 100,
     badge: "Clásica",
     aspectClass: "pin-aspect-standard",
-    description: "Carne de res, jamón, queso amarillo, lechuga y jalapeño.",
+    description: "Carne de res, doble queso americano, cebolla caramelizada y aderezo. Incluye papas.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_fries.jpg",
     popular: false
   },
   {
-    id: "burger-tocino",
-    name: "Hamburguesa de Tocino",
+    id: "smash-tocino",
+    name: "Smash de Tocino",
     category: "burgers",
-    price: 110,
+    price: 120,
     badge: "Favorita",
     aspectClass: "pin-aspect-portrait",
-    description: "Carne de res, tocino crujiente, queso de hebra y salsa BBQ.",
+    description: "Carne de res, queso, tocino crujiente, cebolla caramelizada y salsa BBQ. Incluye papas.",
     includes: "🍟 Incluye porción de papas",
     image: "assets/images/burger_bacon.jpg",
     popular: true
   },
   {
-    id: "burger-hawaiana",
-    name: "Hamburguesa Hawaiana",
+    id: "smash-hawaiana",
+    name: "Smash Hawaiana",
     category: "burgers",
-    price: 120,
+    price: 125,
     badge: "Tropical",
     aspectClass: "pin-aspect-standard",
-    description: "Carne de res, jamón, queso, piña asada y salsa BBQ.",
+    description: "Carne de res, queso, piña asada, tocino crujiente y aderezo. Incluye papas.",
     includes: "🍟 Incluye porción de papas",
-    image: "assets/images/burger_combo.jpg",
+    image: "assets/images/burger_special.jpg",
     popular: false
-  },
-  {
-    id: "burger-especial",
-    name: "Hamburguesa Doble Carne",
-    category: "burgers",
-    price: 150,
-    badge: "🔥 La Más Completa",
-    aspectClass: "pin-aspect-tall",
-    description: "Carne de res doble, queso de hebra, queso americano y salsa BBQ.",
-    includes: "🍟 Incluye porción de papas",
-    image: "assets/images/burger_cheese_pull_1790710190015.jpg",
-    popular: true
   },
 
   // --- SECCIÓN JOCHOS JUMBOS (Todos incluyen papas) ---
@@ -144,10 +143,10 @@ const ALL_MENU_DATA = [
     badge: "Sin Hueso",
     aspectClass: "pin-aspect-standard",
     description: "Pollo crujiente sin hueso bañado en tu salsa favorita.",
-    includes: "5 piezas • 🍟 Incluye porción de papas",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/boneless.png",
     popular: false,
-    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+    sauces: ["BBQ", "Mango Habanero", "Parmesano"]
   },
   {
     id: "boneless-12",
@@ -157,10 +156,10 @@ const ALL_MENU_DATA = [
     badge: "Para Compartir",
     aspectClass: "pin-aspect-tall",
     description: "Doce piezas crujientes para compartir con tu salsa favorita.",
-    includes: "12 piezas • 🍟 Incluye porción de papas",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/boneless.png",
     popular: true,
-    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+    sauces: ["BBQ", "Mango Habanero", "Parmesano"]
   },
   {
     id: "boneless-25",
@@ -170,10 +169,10 @@ const ALL_MENU_DATA = [
     badge: "Fiesta",
     aspectClass: "pin-aspect-standard",
     description: "Veinticinco piezas crujientes para compartir en grande.",
-    includes: "25 piezas • 🍟 Incluye porción de papas",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/boneless.png",
     popular: false,
-    sauces: ["BBQ", "Búfalo", "Mango Habanero", "Lemon Pepper", "Parmesano"]
+    sauces: ["BBQ", "Mango Habanero", "Parmesano"]
   },
 
   // --- SECCIÓN COMBOS (todos SIN papas) ---
@@ -234,15 +233,15 @@ const ALL_MENU_DATA = [
 
   // --- SECCIÓN BOTANAS (Todas incluyen papas) ---
   {
-    id: "dedos-queso",
-    name: "Dedos de Queso (5 pz)",
+    id: "papas-gajo",
+    name: "Papas Gajo (Porción)",
     category: "sides",
-    price: 80,
-    badge: "Queso Fundido",
-    aspectClass: "pin-aspect-portrait",
-    description: "Queso fundido empanizado y doradito.",
-    includes: "5 piezas • 🍟 Incluye porción de papas",
-    image: "assets/images/dedos_queso.png",
+    price: 60,
+    badge: "Crujientes",
+    aspectClass: "pin-aspect-standard",
+    description: "Papas gajo sazonadas y doraditas por fuera, suaves por dentro.",
+    includes: "🍟 Incluye porción de papas",
+    image: "assets/images/fries_golden_crisp_1790710209462.jpg",
     popular: true,
     isShareable: true
   },
@@ -254,9 +253,22 @@ const ALL_MENU_DATA = [
     badge: "Crujientes",
     aspectClass: "pin-aspect-standard",
     description: "Cebolla empanizada, dorada y dulce.",
-    includes: "6 piezas • 🍟 Incluye porción de papas",
+    includes: "🍟 Incluye porción de papas",
     image: "assets/images/aros_cebolla.png",
     popular: false,
+    isShareable: true
+  },
+  {
+    id: "dedos-queso",
+    name: "Dedos de Queso (5 pz)",
+    category: "sides",
+    price: 80,
+    badge: "Queso Fundido",
+    aspectClass: "pin-aspect-portrait",
+    description: "Queso fundido empanizado y doradito.",
+    includes: "🍟 Incluye porción de papas",
+    image: "assets/images/dedos_queso.png",
+    popular: true,
     isShareable: true
   }
 ];
@@ -285,15 +297,15 @@ export const CUSTOM_OPTIONS = {
 // Configuración general del negocio
 export const STORE_CONFIG = {
   name: "EL FLACO TUX",
-  tagline: "Alitas, Boneless & Botanas - Root de tu antojo",
-  specialties: "Alitas • Boneless • Botanas",
+  tagline: "Smash Burgers, Boneless & Papas - Root de tu antojo",
+  specialties: "Smash Burgers • Boneless • Botanas",
   phone: "+52 56 3831 6644",
   whatsappNumber: "5215638316644",
   currency: "$",
   location: "Nanchital de Lázaro Cárdenas del Río, Veracruz",
   deliveryZoneText: "Nanchital y zonas conurbadas",
   deliveryNote: "🛵 Envíos a domicilio en Nanchital de Lázaro Cárdenas del Río con costo adicional según colonia",
-  promoHero: "🌶️ Alitas y boneless bañados al momento: elige entre BBQ, Búfalo, Mango Habanero, Lemon Pepper o Parmesano.",
+  promoHero: "🔥 Smash Burgers con bordes crujientes y boneless al momento con BBQ, Mango Habanero o Parmesano.",
   hours: {
     openHour: 18, // 6:00 PM
     closeHour: 24, // 12:00 AM
